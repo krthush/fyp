@@ -1,2 +1,11 @@
 TODO:
 
+search, filtering, tags
+
+layout stuff
+
+additional columns for projects/user objects
+
+allow staff to select students
+
+Fix bug with author ordering

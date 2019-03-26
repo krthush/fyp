@@ -18,6 +18,14 @@ class Staff extends Migration
             $table->string('name');
             $table->string('email')->unique();
         });
+
+        // Insert some stuff
+        DB::table('staff')->insert(
+            array(
+                'email' => 'test@example.com',
+                'name' => 'test'
+            )
+        );
     }
 
     /**
