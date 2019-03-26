@@ -259,19 +259,23 @@ class ProjectController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
+        $search = "";
+
         // Making sure the user entered a keyword.
         if($request->has('search')) {
 
+            $search = $request->get('search');
+
             if (request('order') == 'name') {
-                $projects = Project::search($request->get('search'))->where('hidden', 0)->get();
+                $projects = Project::search($search)->where('hidden', 0)->get();
                 $projects = $projects->sortBy('title');
             } else if (request('order') == 'author') {
-                $projects = Project::search($request->get('search'))->within('orderByAuthor')->where('hidden', 0)->get();
+                $projects = Project::search($search)->within('orderByAuthor')->where('hidden', 0)->get();
             } else if (request('order') == 'date') {
-                $projects = Project::search($request->get('search'))->where('hidden', 0)->get();
+                $projects = Project::search($search)->where('hidden', 0)->get();
                 $projects = $projects->sortByDesc('updated_at');
             } else {
-                $projects = Project::search($request->get('search'))->where('hidden', 0)->get();
+                $projects = Project::search($search)->where('hidden', 0)->get();
             }
 
         }

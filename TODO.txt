@@ -1,11 +1,18 @@
 TODO:
 
-search, filtering, tags
+Get the search working using better routes/input
 
-layout stuff
+AJAX the select , rank up, rank down, deselect project
 
-additional columns for projects/user objects
 
-allow staff to select students
+From earlier:
+ 
+	search, filtering, tags
 
-Fix bug with author ordering
+	layout stuff
+
+	additional columns for projects/user objects
+
+	allow staff to select students
+
+	Fix bug with author ordering
