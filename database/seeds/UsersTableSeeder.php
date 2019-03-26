@@ -20,5 +20,7 @@ class UsersTableSeeder extends CsvSeeder
 		DB::table($this->table)->truncate();
 
 		parent::run();
+
+		DB::table('users')->update(['password' => bcrypt('secret')]);
     }
 }

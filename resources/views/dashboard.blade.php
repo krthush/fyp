@@ -32,7 +32,7 @@
                                   <h6 class="mb-1">{{ $project->title }}</h6>
                                     <small class="ml-5">{{ \Carbon\Carbon::parse($project->updated_at)->format('d/m/Y') }}</small>
                                 </div>
-                                <small>{{ $project->description }}
+                                <small>{!! nl2br(e($project->description)) !!}
                                     <span class="badge badge-primary badge-pill float-right mt-2">{{ $project->likes->count() }}</span>
                                 </small>
                               </a>

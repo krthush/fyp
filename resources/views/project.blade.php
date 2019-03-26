@@ -27,7 +27,7 @@
                         </div>
                     @endif
 
-                    {{ $project->description }}
+                    {!! nl2br(e($project->description)) !!}
 
                     <div class="row">
 

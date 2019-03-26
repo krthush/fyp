@@ -57,7 +57,7 @@
 
                     <div id="allprojects" class="list-group my-3">
                         @foreach($projects as $project)
-                              <a href="{{ route('project', $project->id) }}" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <a href="{{ route('project', $project->id) }}" class="list-group-item list-group-item-action flex-column align-items-start">
                                 <div class="d-flex w-100 justify-content-between">
                                   <h6 class="mb-1">{{ $project->title }}</h6>
                                     <small class="ml-5">{{ \Carbon\Carbon::parse($project->updated_at)->format('d/m/Y') }}</small>
@@ -65,7 +65,7 @@
                                 <small>by {{ $project->user()->first()->name }}
                                         <span class="badge badge-primary badge-pill float-right mt-2">{{ $project->likes->count() }}</span>
                                 </small>
-                              </a>
+                            </a>
                         @endforeach
                     </div>
 
