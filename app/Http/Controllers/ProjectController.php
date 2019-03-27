@@ -315,7 +315,7 @@ class ProjectController extends Controller
         }
     }
 
-    // Show specific project and its details
+    // Match user to a project
     public function match(Project $project, $student_id) {
 
         $user = auth()->user();
@@ -330,6 +330,32 @@ class ProjectController extends Controller
             ]);
 
             return back()->with('success', 'Student selected successfully.');
+
+        } else {
+
+            return back()->withErrors([
+                'You can only select students for your own projects.'
+            ]);
+
+        }
+
+    }
+
+    // Unmatch user from project
+    public function unmatch(Project $project, $student_id) {
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        if ($project->user_id === $userID) {
+
+            $project->update([
+
+                    'selected_user_id' => null,
+
+            ]);
+
+            return back()->with('success', 'Student deselected successfully.');
 
         } else {
 
