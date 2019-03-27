@@ -8,11 +8,13 @@
                 <div class="card-header">
                     Dashboard
 
+                    @if (Auth::user()->staff == 1)
                     <!-- Button Trigger -->
                     <button type="button" class="btn btn-outline-secondary ml-1 float-right" data-toggle="modal" data-target="#addProjectModal">Add Project</button>
 
                     <!-- Button Trigger -->
                     <button type="button" class="btn btn-outline-secondary float-right" data-toggle="modal" data-target="#deleteProjectModal">Delete Project</button>
+                    @endif
 
                 </div>
 
@@ -23,6 +25,7 @@
                         </div>
                     @endif
 
+                    @if (Auth::user()->staff == 1)
                     Below are the projects you have created:
 
                     <div class="list-group mt-3">
@@ -39,12 +42,34 @@
                         @endforeach                       
                     </div>
 
+                    @else
+
+                    Below are the projects you have selected:
+
+                    <div class="list-group mt-3">
+                        @foreach($likedProjects as $project)
+                            <a href="{{ route('project', $project->id) }}" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                  <h6 class="mb-1">{{ $project->title }}</h6>
+                                    <small class="ml-5">{{ \Carbon\Carbon::parse($project->updated_at)->format('d/m/Y') }}</small>
+                                </div>
+                                <small>{!! nl2br(e($project->description)) !!}
+                                    <span class="badge badge-primary badge-pill float-right mt-2">{{ $project->likes->count() }}</span>
+                                </small>
+                              </a>
+                        @endforeach                       
+                    </div>
+
+                    @endif
+
                 </div>
+
             </div>
         </div>
     </div>
 </div>
 
+@if (Auth::user()->staff == 1)
 <!-- Modal -->
 <div class="modal fade bd-example-modal-lg" id="addProjectModal" tabindex="-1" role="dialog" aria-labelledby="addProjectModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -171,5 +196,6 @@
     </div>
   </div>
 </div>
+@endif
 
 @endsection

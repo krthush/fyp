@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ $project->title }}</div>
+                <div class="card-header"><h5>{{ $project->title }}</h5></div>
 
                 <div class="card-body">
 
@@ -26,6 +26,10 @@
                             </ul>
                         </div>
                     @endif
+
+                    <b>Supervisor: {{ $project->user()->first()->name }}</b>
+
+                    <br><br>
 
                     {!! nl2br(e($project->description)) !!}
 
@@ -98,10 +102,6 @@
                         </div>
 
                     </div>
-
-                    <br>
-
-                    Number of students having selected this project: {{ $project->likes->count() }}
 
                     <div class="row">
                         <div class="col">
@@ -251,6 +251,35 @@
                         
                         </div>
                     </div>
+
+                    <br>
+
+                    Number of students having selected this project: {{ $project->likes->count() }}
+
+                    @if (Auth::user()->staff == 1)
+
+                    <br>
+
+                    Students who have selected this project and their rank:
+
+                    <!-- Code to show which students have chosen project and their rank... -->
+                    <div class="list-group mt-3">
+                        @foreach($usersLiked as $user)
+                            <div class="ui-state-default list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="align-middle">{{ $user->name }}</h6>
+                                    @foreach($likeables as $like)
+                                        @if ($like->user_id == $user->id)
+                                        <h6 class="align-middle">{{ $like->order_column }}</h6>
+                                        @endif
+                                    @endforeach
+                                    <!-- Button Trigger -->
+                                    <a href="/projects/match/{{ $project->id }}/{{ $user->id }}"><button type="button" class="btn btn-outline-secondary" >Select User</button></a>
+                                </div>
+                            </div>
+                        @endforeach                       
+                    </div>
+                    @endif
 
                 </div>
             </div>

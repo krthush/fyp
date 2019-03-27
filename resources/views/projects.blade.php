@@ -138,6 +138,10 @@
                     </div>
                 @endif
 
+                <b>Supervisor: {{ $project->user()->first()->name }}</b>
+
+                <br><br>
+
                 {!! nl2br(e($project->description)) !!}
 
                 <div class="row">

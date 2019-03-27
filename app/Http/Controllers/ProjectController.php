@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Project;
 use App\User;
+use App\Like;
 
 class ProjectController extends Controller
 {
@@ -35,21 +36,16 @@ class ProjectController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        // student vs. staff filter
-        if ($user->staff == true) {
-            $staff  = true;
-        } else {
-            return redirect(route('projects'));
-        }
-
         $userProjects = Project::where('user_id',$userID)->get();
         $selectUserProjects = Project::where('user_id',$userID)->pluck('title','id')->all();
+        $likedProjects = $user->likedProjects()->get();
 
         return view(
                 'dashboard',
                 compact(                    
                     'userProjects',
-                    'selectUserProjects'
+                    'selectUserProjects',
+                    'likedProjects'
                 )
             );
     }
@@ -242,10 +238,16 @@ class ProjectController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
+        $usersLiked = $project->likes;
+
+        $likeables = Like::where('likeable_id',$project->id)->get();
+
         return view(
             'project',
             compact(                
-                'project'
+                'project',
+                'usersLiked',
+                'likeables'
             )
         );
     }
@@ -310,6 +312,31 @@ class ProjectController extends Controller
             )->withErrors([
                 'No results found, please try with different keywords.'
             ]);
+        }
+    }
+
+    // Show specific project and its details
+    public function match(Project $project, $student_id) {
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        if ($project->user_id === $userID) {
+
+            $project->update([
+
+                    'selected_user_id' => $student_id,
+
+            ]);
+
+            return back()->with('success', 'Student selected successfully.');
+
+        } else {
+
+            return back()->withErrors([
+                'You can only select students for your own projects.'
+            ]);
+
         }
 
     }

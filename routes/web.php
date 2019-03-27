@@ -24,6 +24,7 @@ Route::get('/projects/{project}','ProjectController@show')->name('project');
 Route::post('/projects/new','ProjectController@store')->name('new-project');
 Route::delete('/projects/delete','ProjectController@destroy')->name('delete-project');
 Route::patch('/projects/update/{project}/','ProjectController@update')->name('update-project');
+Route::get('projects/match/{project}/{student_id}','ProjectController@match')->name('match-project');
 
 // like routes
 Route::get('projects/like/{project}','LikeController@like')->name('like-project');

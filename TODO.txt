@@ -1,13 +1,16 @@
 TODO:
 
-Get the search working using better routes/input
+Get the search working using better routes/input (there is a bug now with select project due to this)
 
-AJAX the select , rank up, rank down, deselect project
+AJAX the select , rank up, rank down, deselect project (there is a bug now with select project due to this)
 
+At the end remove ability for staff to select projects - redundant and makes it confusing
+
+Include indicators for the ranks - not very clear that the order represents order right now
 
 From earlier:
  
-	search, filtering, tags
+	search, filtering (at least by experimental, computational, etc.), tags
 
 	layout stuff
 
@@ -16,3 +19,5 @@ From earlier:
 	allow staff to select students
 
 	Fix bug with author ordering
+
+	There maybe an easier way to display the individual user's like order on the project page rather than a double forloop -> look into this

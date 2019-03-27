@@ -10,7 +10,8 @@ class Project extends Model
 {
     use Searchable;
     
-    protected $fillable = ['user_id',
+    protected $fillable = [
+        'user_id',
         'title',
         'description',
         'UG',
@@ -19,6 +20,7 @@ class Project extends Model
         'experimental',
         'computational',
         'hidden',
+        'selected_user_id',
     ];
 
     /**

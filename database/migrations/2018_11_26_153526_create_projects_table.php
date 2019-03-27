@@ -25,6 +25,7 @@ class CreateProjectsTable extends Migration
             $table->boolean('experimental');
             $table->boolean('computational');
             $table->boolean('hidden');
+            $table->integer('selected_user_id')->nullable();
         });
     }
 
