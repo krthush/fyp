@@ -277,7 +277,9 @@
                                     @if (empty($project->selected_user_id))
                                     <a href="/projects/match/{{ $project->id }}/{{ $user->id }}"><button type="button" class="btn btn-outline-secondary" >Select User</button></a>
                                     @else
-                                    <a href="/projects/unmatch/{{ $project->id }}/{{ $user->id }}"><button type="button" class="btn btn-outline-secondary" >Deselect User</button></a>
+                                        @if ($project->selected_user_id == $user->id)
+                                        <a href="/projects/unmatch/{{ $project->id }}/{{ $user->id }}"><button type="button" class="btn btn-outline-secondary" >Deselect User</button></a>
+                                        @endif
                                     @endif
                                 </div>
                             </div>
