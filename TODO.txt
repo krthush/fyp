@@ -8,6 +8,10 @@ At the end remove ability for staff to select projects - redundant and makes it 
 
 Include indicators for the ranks - not very clear that the order represents order right now
 
+Create overview table for staff to see all students liking projects and their order (instead of having to go individual projects)
+
+Make super uber admin portal for ambrose so he can roll out student selection, staff selection for specific student ranks (e.g. only let them select rank 1 students) and so on...
+
 From earlier:
  
 	search, filtering (at least by experimental, computational, etc.), tags
