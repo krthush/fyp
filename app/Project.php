@@ -21,6 +21,7 @@ class Project extends Model
         'computational',
         'hidden',
         'selected_user_id',
+        'selected_user2_id',
     ];
 
     /**

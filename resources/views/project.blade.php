@@ -274,11 +274,13 @@
                                         @endif
                                     @endforeach
                                     <!-- Button Trigger -->
-                                    @if (empty($project->selected_user_id))
-                                    <a href="/projects/match/{{ $project->id }}/{{ $user->id }}"><button type="button" class="btn btn-outline-secondary" >Select User</button></a>
+                                    @if ($project->selected_user_id == $user->id || $project->selected_user2_id == $user->id)
+                                    <a href="/projects/unmatch/{{ $project->id }}/{{ $user->id }}"><button type="button" class="btn btn-outline-secondary" >Deselect Student</button></a>
                                     @else
-                                        @if ($project->selected_user_id == $user->id)
-                                        <a href="/projects/unmatch/{{ $project->id }}/{{ $user->id }}"><button type="button" class="btn btn-outline-secondary" >Deselect User</button></a>
+                                        @if (empty($project->selected_user_id))
+                                        <a href="/projects/match/{{ $project->id }}/{{ $user->id }}"><button type="button" class="btn btn-outline-secondary" >Select 1st Student</button></a>
+                                        @elseif (empty($project->selected_user2_id))
+                                        <a href="/projects/match/{{ $project->id }}/{{ $user->id }}"><button type="button" class="btn btn-outline-secondary" >Select 2nd Student</button></a>
                                         @endif
                                     @endif
                                 </div>

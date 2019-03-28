@@ -323,11 +323,23 @@ class ProjectController extends Controller
 
         if ($project->user_id === $userID) {
 
-            $project->update([
+            if ($project->selected_user_id === null) {
 
-                    'selected_user_id' => $student_id,
+                $project->update([
 
-            ]);
+                        'selected_user_id' => $student_id,
+
+                ]);
+
+            } else {
+
+                $project->update([
+
+                        'selected_user2_id' => $student_id,
+
+                ]);
+
+            }
 
             return back()->with('success', 'Student selected successfully.');
 
@@ -349,11 +361,24 @@ class ProjectController extends Controller
 
         if ($project->user_id === $userID) {
 
-            $project->update([
 
-                    'selected_user_id' => null,
+            if ($project->selected_user2_id == $student_id) {
 
-            ]);
+                $project->update([
+
+                        'selected_user2_id' => null,
+
+                ]);
+
+            } else if ($project->selected_user_id == $student_id) {
+
+                $project->update([
+
+                        'selected_user_id' => null,
+
+                ]);
+
+            }
 
             return back()->with('success', 'Student deselected successfully.');
 
