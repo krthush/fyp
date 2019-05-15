@@ -16,7 +16,7 @@ HIGH TODOs:
 
 LOW TODOs:
 
-	For selected projects, make them into modals similar to the searched projects rather than leading to a different page, less UX friendly
+	Need to fix pagination, its a bit messed up atm
 
 From earlier TODOs:
  
@@ -33,3 +33,5 @@ From earlier TODOs:
 	There maybe an easier way to display the individual user's like order on the project page rather than a double forloop -> look into this
 
 DONE:
+	
+	For selected projects, make them into modals similar to the searched projects rather than leading to a different page, less UX friendly
