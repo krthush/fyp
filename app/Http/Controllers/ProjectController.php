@@ -31,6 +31,89 @@ class ProjectController extends Controller
 
     }
 
+    public function search(Request $request) {
+
+        $this->validate(request(), [
+            'order' => 'required',
+        ]);
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        $search = "";
+
+        // Making sure the user entered a keyword.
+        if($request->has('search')) {
+
+            $search = $request->get('search');
+
+            if (request('order') == 'name') {
+                $projects = Project::search($search)->where('hidden', 0)->get();
+                $projects = $projects->sortBy('title');
+            } else if (request('order') == 'author') {
+                $projects = Project::search($search)->within('orderByAuthor')->where('hidden', 0)->get();
+            } else if (request('order') == 'date') {
+                $projects = Project::search($search)->where('hidden', 0)->get();
+                $projects = $projects->sortByDesc('updated_at');
+            } else {
+                $projects = Project::search($search)->where('hidden', 0)->get();
+            }
+
+        }
+
+        $userProjects = Project::where('user_id',$userID)->get();
+        $selectUserProjects=Project::where('user_id',$userID)->pluck('title','id')->all();
+        $likedProjects = $user->likedProjects()->get();
+
+        // If there are results return them, if none, return the error message.
+        if ($projects->count()) {
+
+            return view(
+                    'projects',
+                    compact(                        
+                        'projects',
+                        'userProjects',
+                        'selectUserProjects',
+                        'likedProjects'
+                    )
+                );
+
+        } else {
+
+            return view(
+                'projects',
+                compact(                    
+                    'projects',
+                    'userProjects',
+                    'selectUserProjects',
+                    'likedProjects'
+                )
+            )->withErrors([
+                'No results found, please try with different keywords.'
+            ]);
+        }
+    }
+
+    // Show specific project and its details
+    public function show(Project $project) {
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        $usersLiked = $project->likes;
+
+        $likeables = Like::where('likeable_id',$project->id)->get();
+
+        return view(
+            'project',
+            compact(                
+                'project',
+                'usersLiked',
+                'likeables'
+            )
+        );
+    }
+
     public function dashboard() {
 
         $user = auth()->user();
@@ -230,89 +313,6 @@ class ProjectController extends Controller
 
         }
 
-    }
-
-    // Show specific project and its details
-    public function show(Project $project) {
-
-        $user = auth()->user();
-        $userID = $user->getAuthIdentifier();
-
-        $usersLiked = $project->likes;
-
-        $likeables = Like::where('likeable_id',$project->id)->get();
-
-        return view(
-            'project',
-            compact(                
-                'project',
-                'usersLiked',
-                'likeables'
-            )
-        );
-    }
-
-    public function search(Request $request) {
-
-        $this->validate(request(), [
-            'order' => 'required',
-        ]);
-
-        $user = auth()->user();
-        $userID = $user->getAuthIdentifier();
-
-        $search = "";
-
-        // Making sure the user entered a keyword.
-        if($request->has('search')) {
-
-            $search = $request->get('search');
-
-            if (request('order') == 'name') {
-                $projects = Project::search($search)->where('hidden', 0)->get();
-                $projects = $projects->sortBy('title');
-            } else if (request('order') == 'author') {
-                $projects = Project::search($search)->within('orderByAuthor')->where('hidden', 0)->get();
-            } else if (request('order') == 'date') {
-                $projects = Project::search($search)->where('hidden', 0)->get();
-                $projects = $projects->sortByDesc('updated_at');
-            } else {
-                $projects = Project::search($search)->where('hidden', 0)->get();
-            }
-
-        }
-
-        $userProjects = Project::where('user_id',$userID)->get();
-        $selectUserProjects=Project::where('user_id',$userID)->pluck('title','id')->all();
-        $likedProjects = $user->likedProjects()->get();
-
-        // If there are results return them, if none, return the error message.
-        if ($projects->count()) {
-
-            return view(
-                    'projects',
-                    compact(                        
-                        'projects',
-                        'userProjects',
-                        'selectUserProjects',
-                        'likedProjects'
-                    )
-                );
-
-        } else {
-
-            return view(
-                'projects',
-                compact(                    
-                    'projects',
-                    'userProjects',
-                    'selectUserProjects',
-                    'likedProjects'
-                )
-            )->withErrors([
-                'No results found, please try with different keywords.'
-            ]);
-        }
     }
 
     // Match user to a project
