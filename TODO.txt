@@ -1,20 +1,20 @@
 HIGH TODOs:
 
-	Create overview table for staff to see all students liking projects and their order (instead of having to go individual projects)
+	Need to fix pagination, its a bit messed up atm
 
 	Get the search working using better routes/input (there is a bug now with select project due to this)
 
 	AJAX the select , rank up, rank down, deselect project (there is a bug now with select project due to this)
 
+	Create overview table for staff to see all students liking projects and their order (instead of having to go individual projects)
+
 	At the end remove ability for staff to select projects - redundant and makes it confusing
 
 	Make super uber admin portal for ambrose so he can roll out student selection, staff selection for specific student ranks (e.g. only let them select rank 1 students) and so on... IMPORTANT: from this he should also be able to export tables
 
-	Remember UG = ME4
-
 LOW TODOs:
 
-	Need to fix pagination, its a bit messed up atm
+	Remember UG = ME4
 
 From earlier TODOs:
  

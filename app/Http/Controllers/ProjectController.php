@@ -14,7 +14,7 @@ class ProjectController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        $projects = Project::where('hidden',false)->get();
+        $projects = Project::where('hidden',false)->paginate();
         $userProjects = Project::where('user_id',$userID)->get();
         $selectUserProjects = Project::where('user_id',$userID)->pluck('title','id')->all();
         $likedProjects = $user->likedProjects()->get();
@@ -48,15 +48,15 @@ class ProjectController extends Controller
             $search = $request->get('query');
 
             if (request('order') == 'name') {
-                $projects = Project::search($search)->where('hidden', 0)->get();
+                $projects = Project::search($search)->where('hidden', 0)->paginate();
                 $projects = $projects->sortBy('title');
             } else if (request('order') == 'author') {
-                $projects = Project::search($search)->within('orderByAuthor')->where('hidden', 0)->get();
+                $projects = Project::search($search)->within('orderByAuthor')->where('hidden', 0)->paginate();
             } else if (request('order') == 'date') {
-                $projects = Project::search($search)->where('hidden', 0)->get();
+                $projects = Project::search($search)->where('hidden', 0)->paginate();
                 $projects = $projects->sortByDesc('updated_at');
             } else {
-                $projects = Project::search($search)->where('hidden', 0)->get();
+                $projects = Project::search($search)->where('hidden', 0)->paginate();
             }
 
         }

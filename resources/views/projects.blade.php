@@ -76,6 +76,8 @@
                         @endforeach
                     </div>
 
+                    {{ $projects->links() }}
+
                 </div>
             </div>
         </div>
