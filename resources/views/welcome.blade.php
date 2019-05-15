@@ -81,12 +81,11 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    FYP Selection
+                    FYP Selection Portal
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Link</a>
-                    <a href="https://laracasts.com">Link</a>
+                    <a href="https://bb.imperial.ac.uk/">Blackboard</a>
                 </div>
 
             </div>

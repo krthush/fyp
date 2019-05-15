@@ -1,18 +1,24 @@
-TODO:
+HIGH TODOs:
 
-Get the search working using better routes/input (there is a bug now with select project due to this)
+	Create overview table for staff to see all students liking projects and their order (instead of having to go individual projects)
 
-AJAX the select , rank up, rank down, deselect project (there is a bug now with select project due to this)
+	Get the search working using better routes/input (there is a bug now with select project due to this)
 
-At the end remove ability for staff to select projects - redundant and makes it confusing
+	AJAX the select , rank up, rank down, deselect project (there is a bug now with select project due to this)
 
-Include indicators for the ranks - not very clear that the order represents order right now
+	At the end remove ability for staff to select projects - redundant and makes it confusing
 
-Create overview table for staff to see all students liking projects and their order (instead of having to go individual projects)
+	Include indicators for the ranks - not very clear that the order represents order right now
 
-Make super uber admin portal for ambrose so he can roll out student selection, staff selection for specific student ranks (e.g. only let them select rank 1 students) and so on...
+	Make super uber admin portal for ambrose so he can roll out student selection, staff selection for specific student ranks (e.g. only let them select rank 1 students) and so on... IMPORTANT: from this he should also be able to export tables
 
-From earlier:
+	Remember UG = ME4
+
+LOW TODOs:
+
+	For selected projects, make them into modals similar to the searched projects rather than leading to a different page, less UX friendly
+
+From earlier TODOs:
  
 	search, filtering (at least by experimental, computational, etc.), tags
 
@@ -25,3 +31,5 @@ From earlier:
 	Fix bug with author ordering
 
 	There maybe an easier way to display the individual user's like order on the project page rather than a double forloop -> look into this
+
+DONE:
