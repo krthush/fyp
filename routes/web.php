@@ -34,4 +34,4 @@ Route::get('/projects/rankdown/{project}/','LikeController@rankdown')->name('ran
 Route::patch('/projects/reorder','LikeController@reorder')->name('reorder-projects');
 
 // search routes
-Route::post('/projects/search','ProjectController@search')->name('search-projects');
+Route::get('/search','ProjectController@search')->name('search-projects');

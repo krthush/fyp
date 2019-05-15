@@ -30,11 +30,10 @@
                         </div>
                     @endif
 
-                    <form id="searchProjectForm" name="searchProjectForm" method="POST" action="{{ route('search-projects') }}">
-                        {{ csrf_field() }}
+                    <form id="searchProjectForm" name="searchProjectForm" method="GET" action="{{ route('search-projects') }}">
                         <div class="form-group">
                             <div class="input-group input-group-md">
-                                <input class="form-control" type="text" placeholder="What are you looking for?" name="search">
+                                <input class="form-control" type="text" placeholder="What are you looking for?" name="query">
                                 <div class="input-group-append">
                                     <select class="btn btn-outline-secondary rounded-0" name="order">
                                         <option value="relevance">Order by Relevance</option>

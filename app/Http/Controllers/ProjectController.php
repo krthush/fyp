@@ -43,9 +43,9 @@ class ProjectController extends Controller
         $search = "";
 
         // Making sure the user entered a keyword.
-        if($request->has('search')) {
+        if($request->has('query')) {
 
-            $search = $request->get('search');
+            $search = $request->get('query');
 
             if (request('order') == 'name') {
                 $projects = Project::search($search)->where('hidden', 0)->get();
