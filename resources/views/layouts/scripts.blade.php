@@ -76,6 +76,28 @@
 
 </script>
 
+<script type="text/javascript">
+
+  $(function(){
+
+    $( "#project-list" ).sortable({
+      beforeStop: function( event, ui ) {
+
+        rankcounter = 1;
+
+        $('.project-list-rank').each(function(i, obj) {
+          obj.innerHTML = "Rank: " + rankcounter;
+          rankcounter++;
+        });
+
+      }
+    });
+
+  });
+
+</script>
+
+
 <script>
 
 $.fn.reverseChildren = function() {

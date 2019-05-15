@@ -8,8 +8,6 @@ HIGH TODOs:
 
 	At the end remove ability for staff to select projects - redundant and makes it confusing
 
-	Include indicators for the ranks - not very clear that the order represents order right now
-
 	Make super uber admin portal for ambrose so he can roll out student selection, staff selection for specific student ranks (e.g. only let them select rank 1 students) and so on... IMPORTANT: from this he should also be able to export tables
 
 	Remember UG = ME4
@@ -35,3 +33,5 @@ From earlier TODOs:
 DONE:
 	
 	For selected projects, make them into modals similar to the searched projects rather than leading to a different page, less UX friendly
+
+	Include indicators for the ranks - not very clear that the order represents order right now
