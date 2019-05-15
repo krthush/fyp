@@ -97,6 +97,7 @@
                                 <div class="d-flex w-100 justify-content-between">
                                   <h6 class="mb-1">{{ $project->title }}</h6>
                                 </div>
+                                <small>Rank: {{ $loop->iteration }}</small>
                             </a>
                         @endforeach                       
                     </div>
