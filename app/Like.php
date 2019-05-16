@@ -19,6 +19,11 @@ class Like extends Model
         'order_column',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     /**
      * Get all of the projects that are assigned this like.
      */

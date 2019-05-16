@@ -71,6 +71,10 @@
                     </tbody>
                   </table>
 
+                  @foreach($likeables as $like)
+                    {{ $like->user->name }}
+                  @endforeach
+
                     @else
 
                     Below are the projects you have selected:
