@@ -76,7 +76,9 @@
                         @endforeach
                     </div>
 
-                    {{ $projects->links() }}
+                    @if($paginate == true)
+                        {{ $projects->links() }}
+                    @endif
 
                 </div>
             </div>
@@ -149,16 +151,6 @@
                             @endif
                             <label class="form-check-label">
                                 Suitable for MSc
-                            </label>
-                        </div>
-                        <div class="form-check mt-3">
-                            @if ($project->ME4 == true)
-                            <input class="form-check-input" type="checkbox" disabled checked>
-                            @else
-                            <input class="form-check-input" type="checkbox" disabled>                                
-                            @endif
-                            <label class="form-check-label">
-                                Suitable for ME4
                             </label>
                         </div>
                     </div>
@@ -273,16 +265,6 @@
                             @endif
                             <label class="form-check-label">
                                 Suitable for MSc
-                            </label>
-                        </div>
-                        <div class="form-check mt-3">
-                            @if ($project->ME4 == true)
-                            <input class="form-check-input" type="checkbox" disabled checked>
-                            @else
-                            <input class="form-check-input" type="checkbox" disabled>                                
-                            @endif
-                            <label class="form-check-label">
-                                Suitable for ME4
                             </label>
                         </div>
                     </div>

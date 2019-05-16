@@ -20,12 +20,12 @@ class Staff extends Migration
         });
 
         // Insert some stuff
-        DB::table('staff')->insert(
-            array(
-                'email' => 'test@example.com',
-                'name' => 'test'
-            )
-        );
+        // DB::table('staff')->insert(
+        //     array(
+        //         'email' => 'test@example.com',
+        //         'name' => 'test'
+        //     )
+        // );
     }
 
     /**

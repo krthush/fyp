@@ -16,12 +16,12 @@ class Project extends Model
         'description',
         'UG',
         'MSc',
-        'ME4',
         'experimental',
         'computational',
         'hidden',
         'selected_user_id',
         'selected_user2_id',
+        'popularity'
     ];
 
     /**

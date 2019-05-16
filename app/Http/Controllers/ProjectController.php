@@ -14,7 +14,9 @@ class ProjectController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        $projects = Project::where('hidden',false)->paginate();
+        $paginate = true;
+
+        $projects = Project::where('hidden',false)->paginate(6);
         $userProjects = Project::where('user_id',$userID)->get();
         $selectUserProjects = Project::where('user_id',$userID)->pluck('title','id')->all();
         $likedProjects = $user->likedProjects()->get();
@@ -25,7 +27,8 @@ class ProjectController extends Controller
                     'projects',
                     'userProjects',
                     'selectUserProjects',
-                    'likedProjects'
+                    'likedProjects',
+                    'paginate'
                 )
             );
 
@@ -34,7 +37,6 @@ class ProjectController extends Controller
     public function search(Request $request) {
 
         $this->validate(request(), [
-            'order' => 'required',
         ]);
 
         $user = auth()->user();
@@ -42,22 +44,26 @@ class ProjectController extends Controller
 
         $search = "";
 
+        $paginate = true;
+
         // Making sure the user entered a keyword.
         if($request->has('query')) {
 
             $search = $request->get('query');
 
             if (request('order') == 'name') {
-                $projects = Project::search($search)->where('hidden', 0)->paginate();
-                $projects = $projects->sortBy('title');
+                $projects = Project::search($search)->within('orderByName')->where('hidden', 0)->paginate(6);
             } else if (request('order') == 'author') {
-                $projects = Project::search($search)->within('orderByAuthor')->where('hidden', 0)->paginate();
+                $projects = Project::search($search)->within('orderByAuthor')->where('hidden', 0)->paginate(6);
             } else if (request('order') == 'date') {
-                $projects = Project::search($search)->where('hidden', 0)->paginate();
-                $projects = $projects->sortByDesc('updated_at');
+                $projects = Project::search($search)->within('orderByDate')->where('hidden', 0)->paginate(6);
             } else {
-                $projects = Project::search($search)->where('hidden', 0)->paginate();
+                $projects = Project::search($search)->where('hidden', 0)->paginate(6);
             }
+
+        } else {
+
+            $projects = Project::where('hidden',false)->paginate(6);
 
         }
 
@@ -74,7 +80,8 @@ class ProjectController extends Controller
                         'projects',
                         'userProjects',
                         'selectUserProjects',
-                        'likedProjects'
+                        'likedProjects',
+                        'paginate'
                     )
                 );
 
@@ -86,7 +93,8 @@ class ProjectController extends Controller
                     'projects',
                     'userProjects',
                     'selectUserProjects',
-                    'likedProjects'
+                    'likedProjects',
+                    'paginate'
                 )
             )->withErrors([
                 'No results found, please try with different keywords.'
@@ -154,12 +162,6 @@ class ProjectController extends Controller
             $MSc = false;
         }
 
-        if (request('ME4') == "true") {
-            $ME4 = true;
-        } else {
-            $ME4 = false;
-        }
-
         if (request('experimental') == "true") {
             $experimental = true;
         } else {
@@ -189,8 +191,6 @@ class ProjectController extends Controller
             'UG' => $UG,
 
             'MSc' => $MSc,
-
-            'ME4' => $ME4,
 
             'experimental' => $experimental,
 
@@ -226,12 +226,6 @@ class ProjectController extends Controller
             $MSc = false;
         }
 
-        if (request('ME4') == "true") {
-            $ME4 = true;
-        } else {
-            $ME4 = false;
-        }
-
         if (request('experimental') == "true") {
             $experimental = true;
         } else {
@@ -261,8 +255,6 @@ class ProjectController extends Controller
                 'UG' => $UG,
 
                 'MSc' => $MSc,
-
-                'ME4' => $ME4,
 
                 'experimental' => $experimental,
 

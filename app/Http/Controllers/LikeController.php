@@ -23,6 +23,8 @@ class LikeController extends Controller
 
         $type = 'App\Project';
 
+        $project = Project::find($id);
+
         $existing_like = Like::withTrashed()->whereLikeableType($type)->whereLikeableId($id)->whereUserId(Auth::id())->first();
 
         $max_like_order = Like::withTrashed()->whereLikeableType($type)->whereUserId(Auth::id())->max('order_column');
@@ -35,13 +37,18 @@ class LikeController extends Controller
                 'likeable_type' => $type,
                 'order_column' => $max_like_order+1,
             ]);
+
+            $project->update(['popularity'=> $project->likes->count() ]);
+
             return redirect()->back()->with('success', 'Project selected successfully.');
         } else {
             if (is_null($existing_like->deleted_at)) {
                 $existing_like->delete();
+                $project->update(['popularity'=> $project->likes->count() ]);
                 return redirect()->back()->with('success', 'Project deselected successfully.');
             } else {
                 $existing_like->restore();
+                $project->update(['popularity'=> $project->likes->count() ]);
                 return redirect()->back()->with('success', 'Project selected successfully.');
             }
         }

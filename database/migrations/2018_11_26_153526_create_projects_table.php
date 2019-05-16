@@ -21,10 +21,10 @@ class CreateProjectsTable extends Migration
             $table->text('description')->nullable();
             $table->boolean('UG');
             $table->boolean('MSc');
-            $table->boolean('ME4');
             $table->boolean('experimental');
             $table->boolean('computational');
             $table->boolean('hidden');
+            $table->integer('popularity')->nullable();
             $table->integer('selected_user_id')->nullable();
             $table->integer('selected_user2_id')->nullable();
         });

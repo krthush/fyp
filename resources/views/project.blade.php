@@ -56,16 +56,6 @@
                                     Suitable for MSc
                                 </label>
                             </div>
-                            <div class="form-check mt-3">
-                                @if ($project->ME4 == true)
-                                <input class="form-check-input" type="checkbox" disabled checked>
-                                @else
-                                <input class="form-check-input" type="checkbox" disabled>                                
-                                @endif
-                                <label class="form-check-label">
-                                    Suitable for ME4
-                                </label>
-                            </div>
                         </div>
 
                         <div class="col">
@@ -176,21 +166,6 @@
                                                 @endif
                                                 <label class="form-check-label">
                                                     Suitable for MSc
-                                                </label>
-                                              </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-2"></div>
-                                            <div class="col-sm-10">
-                                              <div class="form-check">
-                                                @if ($project->ME4 == true)
-                                                <input class="form-check-input" type="checkbox" value="true" name="ME4" checked>
-                                                @else
-                                                <input class="form-check-input" type="checkbox" value="true" name="ME4">                                
-                                                @endif
-                                                <label class="form-check-label">
-                                                    Suitable for ME4
                                                 </label>
                                               </div>
                                             </div>
