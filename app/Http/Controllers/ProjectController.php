@@ -57,6 +57,8 @@ class ProjectController extends Controller
                 $projects = Project::search($search)->within('orderByAuthor')->where('hidden', 0)->paginate(6);
             } else if (request('order') == 'date') {
                 $projects = Project::search($search)->within('orderByDate')->where('hidden', 0)->paginate(6);
+            } else if (request('order') == 'popularity') {
+                $projects = Project::search($search)->within('orderByPopularity')->where('hidden', 0)->paginate(6);
             } else {
                 $projects = Project::search($search)->where('hidden', 0)->paginate(6);
             }
@@ -180,6 +182,8 @@ class ProjectController extends Controller
             $hidden = false;
         }
 
+        $popularity = 0;
+
         $project = Project::create([
 
             'user_id' => auth()->user()->getAuthIdentifier(),
@@ -198,6 +202,7 @@ class ProjectController extends Controller
 
             'hidden' => $hidden,
 
+            'popularity' => $popularity,
 
         ]);
 
@@ -244,6 +249,8 @@ class ProjectController extends Controller
             $hidden = false;
         }
 
+        $popularity = $project->likes->count();
+
         if ($project->user_id === $userID) {
 
             Project::where('id', $project->id)->update([
@@ -261,6 +268,8 @@ class ProjectController extends Controller
                 'computational' => $computational,
 
                 'hidden' => $hidden,
+
+                'popularity' => $popularity,
 
             ]);
 

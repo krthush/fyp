@@ -1,11 +1,5 @@
 HIGH TODOs:
 
-	Need to fix pagination, its a bit messed up atm
-
-	Get the search working using better routes/input (there is a bug now with select project due to this)
-
-	AJAX the select , rank up, rank down, deselect project (there is a bug now with select project due to this)
-
 	Create overview table for staff to see all students liking projects and their order (instead of having to go individual projects)
 
 	At the end remove ability for staff to select projects - redundant and makes it confusing
@@ -14,7 +8,9 @@ HIGH TODOs:
 
 LOW TODOs:
 
-	Remember UG = ME4
+	Need to fix pagination, its a bit messed up atm -> doesn't really work with "ordering"
+
+	AJAX the select , rank up, rank down, deselect project
 
 From earlier TODOs:
  
@@ -35,3 +31,7 @@ DONE:
 	For selected projects, make them into modals similar to the searched projects rather than leading to a different page, less UX friendly
 
 	Include indicators for the ranks - not very clear that the order represents order right now
+
+	Remember UG = ME4
+
+	Get the search working using better routes/input (there is a bug now with select project due to this)
