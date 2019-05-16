@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     Dashboard
@@ -28,19 +28,48 @@
                     @if (Auth::user()->staff == 1)
                     Below are the projects you have created:
 
-                    <div class="list-group mt-3">
+<!--                     <div class="list-group mt-3">
                         @foreach($userProjects as $project)
                             <a href="{{ route('project', $project->id) }}" class="list-group-item list-group-item-action flex-column align-items-start">
                                 <div class="d-flex w-100 justify-content-between">
                                   <h6 class="mb-1">{{ $project->title }}</h6>
                                     <small class="ml-5">{{ \Carbon\Carbon::parse($project->updated_at)->format('d/m/Y') }}</small>
                                 </div>
-                                <small>{!! nl2br(e($project->description)) !!}
-                                    <span class="badge badge-primary badge-pill float-right mt-2">{{ $project->likes->count() }}</span>
-                                </small>
                               </a>
                         @endforeach                       
-                    </div>
+                    </div> -->
+
+                    <table class="table table-hover mt-4">
+                    <thead>
+                      <tr>
+                        <th scope="col" style="width: 40%">Project Name</th>
+                        <th scope="col" style="width: 15%">1st Choice Students</th>
+                        <th scope="col" style="width: 15%">2nd Choice Students</th>
+                        <th scope="col" style="width: 15%">3rd Choice Students</th>
+                        <th scope="col" style="width: 15%">Last Updated At</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach($userProjects as $project)
+                      <tr class="link-table-row" data-href="{{ route('project', $project->id) }}">
+                        <td>{{ $project->title }}</td>
+                        <td> 
+                          testing <br> 
+                          testing <br>
+                          testing <br>
+                        </td>
+                        <td>
+                          testing <br>
+                        </td>
+                        <td>
+                          testing <br>
+                          testing <br>
+                        </td>
+                        <td>{{ \Carbon\Carbon::parse($project->updated_at)->format('d/m/Y') }}</td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
 
                     @else
 

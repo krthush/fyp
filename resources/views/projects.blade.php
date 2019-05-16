@@ -91,7 +91,7 @@
 
                     <div id="project-list" class="list-group mt-3">
                         @foreach($likedProjects as $project)
-                            <a href="#liked_project_modal_{{ $project->id }}" data-id="{{ $project->id }}" class="ui-state-default list-group-item list-group-item-action flex-column align-items-start">
+                            <a href="#liked_project_modal_{{ $project->id }}" data-toggle="modal" data-id="{{ $project->id }}" class="ui-state-default list-group-item list-group-item-action flex-column align-items-start">
                                 <div class="d-flex w-100 justify-content-between">
                                   <h6 class="mb-1">{{ $project->title }}</h6>
                                 </div>

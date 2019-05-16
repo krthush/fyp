@@ -11,6 +11,7 @@
 <!-- jQuery UI script -->
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
+<!-- Sortable jQuery component intialization to be make rank selecetion draggable -->
 <script>
   $(function(){
 
@@ -20,6 +21,7 @@
   });
 </script>
 
+<!-- Logic for draggable sorting of selected projects -->
 <script>
   $(function(){
 
@@ -76,6 +78,7 @@
 
 </script>
 
+<!-- Logic to reassign rank number -->
 <script type="text/javascript">
 
   $(function(){
@@ -97,7 +100,7 @@
 
 </script>
 
-
+<!-- Script for flipping direction of search order -->
 <script>
 
 $.fn.reverseChildren = function() {
@@ -113,4 +116,13 @@ $( "#target" ).click(function() {
   $('#allprojects').reverseChildren();
 });
 
+</script>
+
+<!-- Script to make hoverable table clickable -->
+<script type="text/javascript">
+  $(document).ready(function($) {
+      $(".link-table-row").click(function() {
+          window.document.location = $(this).data("href");
+      });
+  });
 </script>

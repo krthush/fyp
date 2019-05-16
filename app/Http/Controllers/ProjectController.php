@@ -138,7 +138,8 @@ class ProjectController extends Controller
                 compact(                    
                     'userProjects',
                     'selectUserProjects',
-                    'likedProjects'
+                    'likedProjects',
+                    'likeables'
                 )
             );
     }

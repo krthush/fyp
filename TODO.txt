@@ -8,19 +8,29 @@ HIGH TODOs:
 
 LOW TODOs:
 
+	Show total number of searched projects/total number of projects
+
+	Add user choosen pagination size (like show 25, 50, 100, etc.)
+
 	Need to fix pagination, its a bit messed up atm -> doesn't really work with "ordering"
 
 	AJAX the select , rank up, rank down, deselect project
 
+	Time to submission/deadline somewhere
+
+	Submit projects button? To email or something? Limit number of submissions?
+
+	Sliders for % experimental, computational, etc. I.E. overall breakdown of projects
+
 From earlier TODOs:
  
-	search, filtering (at least by experimental, computational, etc.), tags
+	Search, filtering (at least by experimental, computational, etc.), tags
 
-	layout stuff
+	Layout stuff
 
-	additional columns for projects/user objects
+	Additional columns for projects/user objects
 
-	allow staff to select students
+	Allow staff to select students
 
 	Fix bug with author ordering
 
@@ -35,3 +45,13 @@ DONE:
 	Remember UG = ME4
 
 	Get the search working using better routes/input (there is a bug now with select project due to this)
+
+Future Stuff:
+
+	Tagging/keyword system to improve search
+
+	Filters -> specific searching
+	
+	Images
+
+	Suggested projects for students based on similarities

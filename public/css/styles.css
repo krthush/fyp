@@ -11,3 +11,7 @@
     cursor: -moz-grabbing;
     cursor: -webkit-grabbing;
 }
+
+.link-table-row{
+	cursor:pointer;
+}
