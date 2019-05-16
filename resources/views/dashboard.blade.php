@@ -121,17 +121,6 @@
                 <div class="col-sm-2"></div>
                 <div class="col-sm-10">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="true" name="ME4">
-                    <label class="form-check-label">
-                      Suitable for ME4
-                    </label>
-                  </div>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-10">
-                  <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="true" name="experimental">
                     <label class="form-check-label">
                       Experimental
