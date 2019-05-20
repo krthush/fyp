@@ -52,13 +52,17 @@ class ProjectController extends Controller
             $search = $request->get('query');
 
             if (request('order') == 'name') {
-                $projects = Project::search($search)->within('orderByName')->where('hidden', 0)->paginate(6);
+                $projects = Project::search($search)->where('hidden', 0)->within('orderByName')->paginate(6);
+                $projects->appends(['order' => 'name']);
             } else if (request('order') == 'author') {
-                $projects = Project::search($search)->within('orderByAuthor')->where('hidden', 0)->paginate(6);
+                $projects = Project::search($search)->where('hidden', 0)->within('orderByAuthor')->paginate(6);
+                $projects->appends(['order' => 'author']);
             } else if (request('order') == 'date') {
-                $projects = Project::search($search)->within('orderByDate')->where('hidden', 0)->paginate(6);
+                $projects = Project::search($search)->where('hidden', 0)->within('orderByDate')->paginate(6);
+                $projects->appends(['order' => 'date']);
             } else if (request('order') == 'popularity') {
-                $projects = Project::search($search)->within('orderByPopularity')->where('hidden', 0)->paginate(6);
+                $projects = Project::search($search)->where('hidden', 0)->within('orderByPopularity')->paginate(6);
+                $projects->appends(['order' => 'popularity']);
             } else {
                 $projects = Project::search($search)->where('hidden', 0)->paginate(6);
             }
