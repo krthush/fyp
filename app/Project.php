@@ -46,12 +46,12 @@ class Project extends Model
 
     public function likes()
     {
-        return $this->morphToMany('App\User', 'likeable')->whereDeletedAt(null);
+        return $this->hasMany('App\Like', 'likeable_id');
     }
 
-    public function getLikes()
+    public function getUsersLiked()
     {
-        return $this->hasMany('App\Like', 'likeable_id');
+        return $this->morphToMany('App\User', 'likeable')->whereDeletedAt(null);
     }
 
     public function getIsLikedAttribute()
