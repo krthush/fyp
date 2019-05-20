@@ -139,23 +139,35 @@ class ProjectController extends Controller
         //     dd($project);
         // }
 
-        $array = [];
+        $collections = collect([]);
 
         foreach ($userProjects as $project) {
 
+            // dd($project->likes);
+
             $projectLikeables = Like::where('likeable_id', $project->id)->get();
 
-            array_push($array, $projectLikeables);
+            // array_push($array, $projectLikeables);
+
+            $collections->push($projectLikeables);
+
+            // dd($project->getLikes);
+
+            // foreach ($project->likes as $like) {
+
+            //     dd($like->name);
+
+            // }
 
         }
 
-        $likeables = collect($array);
+        // dd($collections);
 
-        dd($likeables);
-
-        foreach ($likeables as $like) {
-                dd($like->user);
-        }
+        // foreach ($collections as $collection) {
+        //     foreach ($collection as $likeable) {
+        //         dd($likeable->user);
+        //     }
+        // }
 
         // dd($userProjects);
 
@@ -165,7 +177,7 @@ class ProjectController extends Controller
                     'userProjects',
                     'selectUserProjects',
                     'likedProjects',
-                    'likeables'
+                    'collections'
                 )
             );
     }

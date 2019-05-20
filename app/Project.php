@@ -49,6 +49,11 @@ class Project extends Model
         return $this->morphToMany('App\User', 'likeable')->whereDeletedAt(null);
     }
 
+    public function getLikes()
+    {
+        return $this->hasMany('App\Like', 'likeable_id');
+    }
+
     public function getIsLikedAttribute()
     {
         $like = $this->likes()->whereUserId(Auth::id())->first();

@@ -53,10 +53,11 @@
                       @foreach($userProjects as $project)
                       <tr class="link-table-row" data-href="{{ route('project', $project->id) }}">
                         <td>{{ $project->title }}</td>
-                        <td> 
-                          testing <br> 
-                          testing <br>
-                          testing <br>
+                        <td>
+                          @foreach($project->likes as $like)
+                            {{ $like->name }}
+                            {{ $project->getLikes }}
+                          @endforeach
                         </td>
                         <td>
                           testing <br>
@@ -70,12 +71,6 @@
                       @endforeach
                     </tbody>
                   </table>
-
-                  <div>
-                    @foreach($collections as $collection)
-                      {{ $collection->like->user->name }}
-                    @endforeach                    
-                  </div>
 
                     @else
 
