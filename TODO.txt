@@ -10,9 +10,9 @@ LOW TODOs:
 
 	Add user choosen pagination size (like show 25, 50, 100, etc.)
 
-	Need to fix pagination, its a bit messed up atm -> doesn't really work with "ordering"
-
 	AJAX the select , rank up, rank down, deselect project
+
+	Need to fix pagination, only a small bug where on some pages when using "orberby" the ranking isn't correct
 
 	Time to submission/deadline somewhere
 
