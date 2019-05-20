@@ -71,9 +71,11 @@
                     </tbody>
                   </table>
 
-                  @foreach($likeables as $like)
-                    {{ $like->user->name }}
-                  @endforeach
+                  <div>
+                    @foreach($collections as $collection)
+                      {{ $collection->like->user->name }}
+                    @endforeach                    
+                  </div>
 
                     @else
 

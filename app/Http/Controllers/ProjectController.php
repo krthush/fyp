@@ -133,18 +133,29 @@ class ProjectController extends Controller
         $selectUserProjects = Project::where('user_id',$userID)->pluck('title','id')->all();
         $likedProjects = $user->likedProjects()->get();
 
-        // dd($likeables);
+        // dd($likedProjects);
 
-        $collection = collect([]);
+        // foreach ($likedProjects as $project) {
+        //     dd($project);
+        // }
+
+        $array = [];
 
         foreach ($userProjects as $project) {
 
-            $likeables = Like::where('likeable_id', $project->id)->get();
+            $projectLikeables = Like::where('likeable_id', $project->id)->get();
 
-            $collection->push($likeables);
+            array_push($array, $projectLikeables);
+
         }
 
-        dd($collection);
+        $likeables = collect($array);
+
+        dd($likeables);
+
+        foreach ($likeables as $like) {
+                dd($like->user);
+        }
 
         // dd($userProjects);
 
