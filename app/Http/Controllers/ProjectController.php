@@ -110,7 +110,7 @@ class ProjectController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        $usersLiked = $project->likes;
+        $usersLiked = $project->getUsersLiked;
 
         $likeables = Like::where('likeable_id',$project->id)->get();
 
@@ -133,51 +133,12 @@ class ProjectController extends Controller
         $selectUserProjects = Project::where('user_id',$userID)->pluck('title','id')->all();
         $likedProjects = $user->likedProjects()->get();
 
-        // dd($likedProjects);
-
-        // foreach ($likedProjects as $project) {
-        //     dd($project);
-        // }
-
-        $collections = collect([]);
-
-        foreach ($userProjects as $project) {
-
-            // dd($project->likes);
-
-            $projectLikeables = Like::where('likeable_id', $project->id)->get();
-
-            // array_push($array, $projectLikeables);
-
-            $collections->push($projectLikeables);
-
-            // dd($project->getLikes);
-
-            // foreach ($project->likes as $like) {
-
-            //     dd($like->name);
-
-            // }
-
-        }
-
-        // dd($collections);
-
-        // foreach ($collections as $collection) {
-        //     foreach ($collection as $likeable) {
-        //         dd($likeable->user);
-        //     }
-        // }
-
-        // dd($userProjects);
-
         return view(
                 'dashboard',
                 compact(                    
                     'userProjects',
                     'selectUserProjects',
-                    'likedProjects',
-                    'collections'
+                    'likedProjects'
                 )
             );
     }

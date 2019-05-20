@@ -55,16 +55,24 @@
                         <td>{{ $project->title }}</td>
                         <td>
                           @foreach($project->likes as $like)
-                            {{ $like->name }}
-                            {{ $project->getLikes }}
+                            @if($like->order_column == 1)
+                              {{ $like->user->name }} <br>
+                            @endif
                           @endforeach
                         </td>
                         <td>
-                          testing <br>
+                          @foreach($project->likes as $like)
+                            @if($like->order_column == 2)
+                              {{ $like->user->name }} <br>
+                            @endif
+                          @endforeach
                         </td>
                         <td>
-                          testing <br>
-                          testing <br>
+                          @foreach($project->likes as $like)
+                            @if($like->order_column == 3)
+                              {{ $like->user->name }} <br>
+                            @endif
+                          @endforeach
                         </td>
                         <td>{{ \Carbon\Carbon::parse($project->updated_at)->format('d/m/Y') }}</td>
                       </tr>

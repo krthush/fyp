@@ -1,7 +1,5 @@
 HIGH TODOs:
 
-	Create overview table for staff to see all students liking projects and their order (instead of having to go individual projects)
-
 	At the end remove ability for staff to select projects - redundant and makes it confusing
 
 	Make super uber admin portal for ambrose so he can roll out student selection, staff selection for specific student ranks (e.g. only let them select rank 1 students) and so on... IMPORTANT: from this he should also be able to export tables
@@ -37,6 +35,8 @@ From earlier TODOs:
 	There maybe an easier way to display the individual user's like order on the project page rather than a double forloop -> look into this
 
 DONE:
+
+	Create overview table for staff to see all students liking projects and their order (instead of having to go individual projects)
 	
 	For selected projects, make them into modals similar to the searched projects rather than leading to a different page, less UX friendly
 
