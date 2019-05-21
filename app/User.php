@@ -37,4 +37,10 @@ class User extends Authenticatable
         return $this->morphedByMany('App\Project', 'likeable')->whereDeletedAt(null)->orderBy('order_column');
     }
 
+    public function admin()
+    {
+        $isAdmin = DB::table('admins')->where('email', '=', $this->email)->first();
+        return (!is_null($isAdmin)) ? true : false;
+    }
+
 }

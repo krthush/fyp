@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Staff extends Migration
+class CreateAdminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,12 @@ class Staff extends Migration
      */
     public function up()
     {
-        Schema::create('staff', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('admins', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->boolean('superadmin');
         });
-
-        // Insert some stuff
-        // DB::table('staff')->insert(
-        //     array(
-        //         'email' => 'test@example.com',
-        //         'name' => 'test'
-        //     )
-        // );
     }
 
     /**
@@ -35,6 +28,6 @@ class Staff extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('staff');
+        Schema::dropIfExists('admins');
     }
 }

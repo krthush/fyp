@@ -57,7 +57,7 @@
                         @else
                             @if(Auth::user()->email == "amkpt@ic.ac.uk")
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Super Admin</a>
+                                <a class="nav-link" href="#">Admin</a>
                             </li>
                             @endif
                             <li class="nav-item">
