@@ -55,6 +55,11 @@
                                 @endif
                             </li>
                         @else
+                            @if(Auth::user()->email == "amkpt@ic.ac.uk")
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Super Admin</a>
+                            </li>
+                            @endif
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('projects') }}">Projects</a>
                             </li>
