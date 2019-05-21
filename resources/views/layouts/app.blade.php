@@ -55,9 +55,9 @@
                                 @endif
                             </li>
                         @else
-                            @if(Auth::user()->admin == 1)
+                            @if(Auth::user()->superadmin == 1)
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Admin</a>
+                                <a class="nav-link" href="{{ route('superadmin') }}">Super Admin</a>
                             </li>
                             @endif
                             <li class="nav-item">

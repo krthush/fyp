@@ -19,7 +19,7 @@ Auth::routes();
 
 // Use the built in auth middleware to allow only logged in users
 Route::group(['middleware' => ['auth']], function() {
-    // your routes
+    // Routes that need auth:
 
     // project routes
 	Route::get('/dashboard', 'ProjectController@dashboard')->name('dashboard');
@@ -39,6 +39,9 @@ Route::group(['middleware' => ['auth']], function() {
 
 	// search routes
 	Route::get('/search','ProjectController@search')->name('search-projects');
-	
+
+	// super admin routes
+	Route::get('/superadmin','SuperAdminController@show')->name('superadmin');
+	Route::get('/superadmin/export-users','SuperAdminController@exportUsers')->name('export-users');
 });
 
