@@ -39,17 +39,76 @@
                                 </div>
                             </div>
                             <div class="input-group input-group-md mt-2">
-                                <span style="display: flex; align-items: center;"> Current number of projects being viewed: {{ $projects->total() }} </span>
+                                <span style="display: flex; align-items: center;">
+                                    Current number of projects being viewed:
+                                    @if($paginate != "all")
+                                        {{ $projects->total() }}
+                                    @else
+                                        {{ $projects->count() }}
+                                    @endif
+                                </span>
                                 <div style="margin-left:auto; margin-right:0;">
-                                    <select class="btn btn-outline-secondary" name="order">
-                                        <option value="relevance">Order by Relevance</option>
-                                        <option value="name">Order by Name</option>
-                                        <option value="author">Order by Author</option>
-                                        <option value="date">Order by Date</option>
-                                        <option value="popularity">Order by Popularity</option>
+                                    <select class="btn btn-outline-secondary" name="paginate">
+
+                                        @if($paginate == 5)
+                                            <option value="5" selected>5 Results</option>
+                                        @else
+                                            <option value="5">5 Results</option>
+                                        @endif
+
+                                        @if($paginate == 25)
+                                            <option value="25" selected>25 Results</option>
+                                        @else
+                                            <option value="25">25 Results</option>
+                                        @endif
+
+                                        @if($paginate == 50)
+                                            <option value="50" selected>50 Results</option>
+                                        @else
+                                            <option value="50">50 Results</option>
+                                        @endif
+
+                                        @if($paginate == "all")
+                                            <option value="all" selected>Show All</option>
+                                        @else
+                                            <option value="all">Show All</option>
+                                        @endif
+                                        
                                     </select>
-                                    <button id="target" type="button" class="btn btn-light btn-outline-secondary ml-2">
-                                        Reverse Order
+                                    <select class="btn btn-outline-secondary" name="order">
+
+                                        @if($order == "relevance")
+                                            <option value="relevance" selected>Order by Relevance</option>
+                                        @else
+                                            <option value="relevance">Order by Relevance</option>
+                                        @endif
+
+                                        @if($order == "name")
+                                            <option value="name" selected>Order by Name</option>
+                                        @else
+                                            <option value="name">Order by Name</option>
+                                        @endif
+
+                                        @if($order == "author")
+                                            <option value="author" selected>Order by Author</option>
+                                        @else
+                                            <option value="author">Order by Author</option>
+                                        @endif
+
+                                        @if($order == "date")
+                                            <option value="date" selected>Order by Date</option>
+                                        @else
+                                            <option value="date">Order by Date</option>
+                                        @endif
+
+                                        @if($order == "popularity")
+                                            <option value="popularity" selected>Order by Popularity</option>
+                                        @else
+                                            <option value="popularity">Order by Popularity</option>
+                                        @endif
+
+                                    </select>
+                                    <button id="target" type="button" class="btn btn-light btn-outline-secondary">
                                         <i class="fa fa-sort" aria-hidden="true"></i>
                                     </button>
                                 </div>
@@ -80,7 +139,7 @@
                         @endforeach
                     </div>
 
-                    @if($paginate == true)
+                    @if($paginate != "all")
                         {{ $projects->links() }}
                     @endif
 

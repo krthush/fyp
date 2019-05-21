@@ -34,7 +34,6 @@ From earlier TODOs:
 
 DONE:
 
-
 	Show total number of searched projects/total number of projects
 
 	Create overview table for staff to see all students liking projects and their order (instead of having to go individual projects)

@@ -14,9 +14,12 @@ class ProjectController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        $paginate = true;
+        // default values for showing results
+        $paginate = 5;
+        $order = 'relevance';
 
-        $projects = Project::where('hidden',false)->paginate(6);
+        $projects = Project::where('hidden',false)->paginate(5);
+
         $userProjects = Project::where('user_id',$userID)->get();
         $selectUserProjects = Project::where('user_id',$userID)->pluck('title','id')->all();
         $likedProjects = $user->likedProjects()->get();
@@ -28,7 +31,8 @@ class ProjectController extends Controller
                     'userProjects',
                     'selectUserProjects',
                     'likedProjects',
-                    'paginate'
+                    'paginate',
+                    'order'
                 )
             );
 
@@ -43,33 +47,54 @@ class ProjectController extends Controller
         $userID = $user->getAuthIdentifier();
 
         $search = "";
-
-        $paginate = true;
+        $paginate = request('paginate');
+        $order = request('order');
 
         // Making sure the user entered a keyword.
         if($request->has('query')) {
 
             $search = $request->get('query');
 
-            if (request('order') == 'name') {
-                $projects = Project::search($search)->where('hidden', 0)->within('orderByName')->paginate(6);
-                $projects->appends(['order' => 'name']);
-            } else if (request('order') == 'author') {
-                $projects = Project::search($search)->where('hidden', 0)->within('orderByAuthor')->paginate(6);
-                $projects->appends(['order' => 'author']);
-            } else if (request('order') == 'date') {
-                $projects = Project::search($search)->where('hidden', 0)->within('orderByDate')->paginate(6);
-                $projects->appends(['order' => 'date']);
-            } else if (request('order') == 'popularity') {
-                $projects = Project::search($search)->where('hidden', 0)->within('orderByPopularity')->paginate(6);
-                $projects->appends(['order' => 'popularity']);
+            if (request('paginate') == 'all') {
+
+                if (request('order') == 'name') {
+                    $projects = Project::search($search)->where('hidden', 0)->within('orderByName')->get();
+                    // dd($projects);
+                } else if (request('order') == 'author') {
+                    $projects = Project::search($search)->where('hidden', 0)->within('orderByAuthor')->get();
+                } else if (request('order') == 'date') {
+                    $projects = Project::search($search)->where('hidden', 0)->within('orderByDate')->get();
+                } else if (request('order') == 'popularity') {
+                    $projects = Project::search($search)->where('hidden', 0)->within('orderByPopularity')->get();
+                } else {
+                    $projects = Project::search($search)->where('hidden', 0)->get();
+                }
+
             } else {
-                $projects = Project::search($search)->where('hidden', 0)->paginate(6);
+
+                if (request('order') == 'name') {
+                    $projects = Project::search($search)->where('hidden', 0)->within('orderByName')->paginate(request('paginate'));
+                    $projects->appends(['order' => 'name']);
+                } else if (request('order') == 'author') {
+                    $projects = Project::search($search)->where('hidden', 0)->within('orderByAuthor')->paginate(request('paginate'));
+                    $projects->appends(['order' => 'author']);
+                } else if (request('order') == 'date') {
+                    $projects = Project::search($search)->where('hidden', 0)->within('orderByDate')->paginate(request('paginate'));
+                    $projects->appends(['order' => 'date']);
+                } else if (request('order') == 'popularity') {
+                    $projects = Project::search($search)->where('hidden', 0)->within('orderByPopularity')->paginate(request('paginate'));
+                    $projects->appends(['order' => 'popularity']);
+                } else {
+                    $projects = Project::search($search)->where('hidden', 0)->paginate(request('paginate'));
+                }
+
+                $projects->appends(['paginate' => request('paginate')]);
+
             }
 
         } else {
 
-            $projects = Project::where('hidden',false)->paginate(6);
+            $projects = Project::where('hidden',false)->paginate(request('paginate'));
 
         }
 
@@ -87,7 +112,8 @@ class ProjectController extends Controller
                         'userProjects',
                         'selectUserProjects',
                         'likedProjects',
-                        'paginate'
+                        'paginate',
+                        'order'
                     )
                 );
 
@@ -100,7 +126,8 @@ class ProjectController extends Controller
                     'userProjects',
                     'selectUserProjects',
                     'likedProjects',
-                    'paginate'
+                    'paginate',
+                    'order'
                 )
             )->withErrors([
                 'No results found, please try with different keywords.'
