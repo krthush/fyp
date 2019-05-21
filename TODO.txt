@@ -6,11 +6,7 @@ HIGH TODOs:
 
 LOW TODOs:
 
-	Add user choosen pagination size (like show 25, 50, 100, etc.)
-
 	AJAX the select , rank up, rank down, deselect project
-
-	Need to fix pagination, only a small bug where on some pages when using "orberby" the ranking isn't correct
 
 	Time to submission/deadline somewhere
 
@@ -33,6 +29,10 @@ From earlier TODOs:
 	There maybe an easier way to display the individual user's like order on the project page rather than a double forloop -> look into this
 
 DONE:
+
+	Need to fix pagination, only a small bug where on some pages when using "orberby" the ranking isn't correct
+
+	Add user choosen pagination size (like show 25, 50, 100, etc.)
 
 	Show total number of searched projects/total number of projects
 
