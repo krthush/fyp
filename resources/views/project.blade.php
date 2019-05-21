@@ -38,9 +38,9 @@
                         <div class="col">
                             <div class="form-check mt-3">
                                 @if ($project->UG == true)
-                                <input class="form-check-input" type="checkbox" disabled checked>
+                                    <input class="form-check-input" type="checkbox" disabled checked>
                                 @else
-                                <input class="form-check-input" type="checkbox" disabled>                                
+                                    <input class="form-check-input" type="checkbox" disabled>                                
                                 @endif
                                 <label class="form-check-label">
                                     Suitable for UG
@@ -48,9 +48,9 @@
                             </div>
                             <div class="form-check mt-3">
                                 @if ($project->MSc == true)
-                                <input class="form-check-input" type="checkbox" disabled checked>
+                                    <input class="form-check-input" type="checkbox" disabled checked>
                                 @else
-                                <input class="form-check-input" type="checkbox" disabled>                                
+                                    <input class="form-check-input" type="checkbox" disabled>                                
                                 @endif
                                 <label class="form-check-label">
                                     Suitable for MSc
@@ -61,9 +61,9 @@
                         <div class="col">
                             <div class="form-check mt-3">
                                 @if ($project->experimental == true)
-                                <input class="form-check-input" type="checkbox" disabled checked>
+                                    <input class="form-check-input" type="checkbox" disabled checked>
                                 @else
-                                <input class="form-check-input" type="checkbox" disabled>                                
+                                    <input class="form-check-input" type="checkbox" disabled>                                
                                 @endif
                                 <label class="form-check-label">
                                     Experimental
@@ -71,9 +71,9 @@
                             </div>
                             <div class="form-check mt-3">
                                 @if ($project->computational == true)
-                                <input class="form-check-input" type="checkbox" disabled checked>
+                                    <input class="form-check-input" type="checkbox" disabled checked>
                                 @else
-                                <input class="form-check-input" type="checkbox" disabled>                                
+                                    <input class="form-check-input" type="checkbox" disabled>                                
                                 @endif
                                 <label class="form-check-label">
                                     Computational
@@ -81,9 +81,9 @@
                             </div>
                             <div class="form-check mt-3">
                                 @if ($project->hidden == true)
-                                <input class="form-check-input" type="checkbox" disabled checked>
+                                    <input class="form-check-input" type="checkbox" disabled checked>
                                 @else
-                                <input class="form-check-input" type="checkbox" disabled>                                
+                                    <input class="form-check-input" type="checkbox" disabled>                                
                                 @endif
                                 <label class="form-check-label">
                                     Hidden
@@ -112,7 +112,7 @@
                             @endif
                         @endif
 
-                        @if (Auth::user()->id === $project->user_id)
+                        @if (Auth::user()->id === $project->user_id || Auth::user()->admin == 1)
                             <!-- Button Trigger -->
                             <button type="button" class="btn btn-outline-secondary mt-3" data-toggle="modal" data-target="#editProjectModal">Edit Project</button>
 
@@ -147,9 +147,9 @@
                                             <div class="col-sm-10">
                                               <div class="form-check">
                                                 @if ($project->UG == true)
-                                                <input class="form-check-input" type="checkbox" value="true" name="UG" checked>
+                                                    <input class="form-check-input" type="checkbox" value="true" name="UG" checked>
                                                 @else
-                                                <input class="form-check-input" type="checkbox" value="true" name="UG">                                
+                                                    <input class="form-check-input" type="checkbox" value="true" name="UG">
                                                 @endif
                                                 <label class="form-check-label">
                                                     Suitable for UG
@@ -162,9 +162,9 @@
                                             <div class="col-sm-10">
                                               <div class="form-check">
                                                 @if ($project->MSc == true)
-                                                <input class="form-check-input" type="checkbox" value="true" name="MSc" checked>
+                                                    <input class="form-check-input" type="checkbox" value="true" name="MSc" checked>
                                                 @else
-                                                <input class="form-check-input" type="checkbox" value="true" name="MSc">                                
+                                                    <input class="form-check-input" type="checkbox" value="true" name="MSc">
                                                 @endif
                                                 <label class="form-check-label">
                                                     Suitable for MSc
@@ -177,9 +177,9 @@
                                             <div class="col-sm-10">
                                               <div class="form-check">
                                                 @if ($project->experimental == true)
-                                                <input class="form-check-input" type="checkbox" value="true" name="experimental" checked>
+                                                    <input class="form-check-input" type="checkbox" value="true" name="experimental" checked>
                                                 @else
-                                                <input class="form-check-input" type="checkbox" value="true" name="experimental">                                
+                                                    <input class="form-check-input" type="checkbox" value="true" name="experimental">
                                                 @endif
                                                 <label class="form-check-label">
                                                     Experimental
@@ -192,9 +192,9 @@
                                             <div class="col-sm-10">
                                               <div class="form-check">
                                                 @if ($project->computational == true)
-                                                <input class="form-check-input" type="checkbox" value="true" name="computational" checked>
+                                                    <input class="form-check-input" type="checkbox" value="true" name="computational" checked>
                                                 @else
-                                                <input class="form-check-input" type="checkbox" value="true" name="computational">                                
+                                                    <input class="form-check-input" type="checkbox" value="true" name="computational">
                                                 @endif
                                                 <label class="form-check-label">
                                                     Computational
@@ -207,9 +207,9 @@
                                             <div class="col-sm-10">
                                               <div class="form-check">
                                                 @if ($project->hidden == true)
-                                                <input class="form-check-input" type="checkbox" value="true" name="hidden" checked>
+                                                    <input class="form-check-input" type="checkbox" value="true" name="hidden" checked>
                                                 @else
-                                                <input class="form-check-input" type="checkbox" value="true" name="hidden">                                
+                                                    <input class="form-check-input" type="checkbox" value="true" name="hidden">  
                                                 @endif
                                                 <label class="form-check-label">
                                                     Hidden
@@ -233,37 +233,38 @@
 
                     Number of students having selected this project: {{ $project->likes->count() }}
 
-                    @if (Auth::user()->staff == 1)
+                    @if (Auth::user()->id === $project->user_id || Auth::user()->admin == 1)
 
-                    <br>
+                        <br>
 
-                    Students who have selected this project and their rank:
+                        Students who have selected this project and their rank:
 
-                    <!-- Code to show which students have chosen project and their rank... -->
-                    <div class="list-group mt-3">
-                        @foreach($usersLiked as $user)
-                            <div class="ui-state-default list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h6 class="align-middle">{{ $user->name }}</h6>
-                                    @foreach($likeables as $like)
-                                        @if ($like->user_id == $user->id)
-                                        <h6 class="align-middle">{{ $like->order_column }}</h6>
+                        <!-- Code to show which students have chosen project and their rank... -->
+                        <div class="list-group mt-3">
+                            @foreach($usersLiked as $user)
+                                <div class="ui-state-default list-group-item list-group-item-action flex-column align-items-start">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="align-middle">{{ $user->name }}</h6>
+                                        @foreach($likeables as $like)
+                                            @if ($like->user_id == $user->id)
+                                            <h6 class="align-middle">{{ $like->order_column }}</h6>
+                                            @endif
+                                        @endforeach
+                                        <!-- Button Trigger -->
+                                        @if ($project->selected_user_id == $user->id || $project->selected_user2_id == $user->id)
+                                        <a href="/projects/unmatch/{{ $project->id }}/{{ $user->id }}"><button type="button" class="btn btn-outline-secondary" >Deselect Student</button></a>
+                                        @else
+                                            @if (empty($project->selected_user_id))
+                                            <a href="/projects/match/{{ $project->id }}/{{ $user->id }}"><button type="button" class="btn btn-outline-secondary" >Select 1st Student</button></a>
+                                            @elseif (empty($project->selected_user2_id))
+                                            <a href="/projects/match/{{ $project->id }}/{{ $user->id }}"><button type="button" class="btn btn-outline-secondary" >Select 2nd Student</button></a>
+                                            @endif
                                         @endif
-                                    @endforeach
-                                    <!-- Button Trigger -->
-                                    @if ($project->selected_user_id == $user->id || $project->selected_user2_id == $user->id)
-                                    <a href="/projects/unmatch/{{ $project->id }}/{{ $user->id }}"><button type="button" class="btn btn-outline-secondary" >Deselect Student</button></a>
-                                    @else
-                                        @if (empty($project->selected_user_id))
-                                        <a href="/projects/match/{{ $project->id }}/{{ $user->id }}"><button type="button" class="btn btn-outline-secondary" >Select 1st Student</button></a>
-                                        @elseif (empty($project->selected_user2_id))
-                                        <a href="/projects/match/{{ $project->id }}/{{ $user->id }}"><button type="button" class="btn btn-outline-secondary" >Select 2nd Student</button></a>
-                                        @endif
-                                    @endif
+                                    </div>
                                 </div>
-                            </div>
-                        @endforeach                       
-                    </div>
+                            @endforeach                       
+                        </div>
+
                     @endif
 
                 </div>

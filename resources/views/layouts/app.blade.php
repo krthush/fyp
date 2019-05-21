@@ -55,7 +55,7 @@
                                 @endif
                             </li>
                         @else
-                            @if(Auth::user()->email == "amkpt@ic.ac.uk")
+                            @if(Auth::user()->admin == 1)
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Admin</a>
                             </li>
