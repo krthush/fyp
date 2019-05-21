@@ -25,8 +25,8 @@ class CreateProjectsTable extends Migration
             $table->boolean('computational');
             $table->boolean('hidden');
             $table->integer('popularity');
-            $table->integer('selected_user_id')->nullable();
-            $table->integer('selected_user2_id')->nullable();
+            $table->integer('selected_user_id')->default(0);
+            $table->integer('selected_user2_id')->default(0);
         });
     }
 

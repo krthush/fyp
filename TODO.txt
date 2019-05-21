@@ -8,7 +8,7 @@ LOW TODOs:
 
 	Time to submission/deadline somewhere
 
-	Submit projects button? To email or something? Limit number of submissions?
+	Submit projects button? To email or something? Limit number of submissions? More feedback: should notified students with an email when they are selected for a project
 
 	Sliders for % experimental, computational, etc. I.E. overall breakdown of projects
 

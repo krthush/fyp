@@ -2,12 +2,12 @@
 
 namespace App\Exports;
 
-use App\User;
+use App\Project;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
 
-class UsersExport implements FromCollection, WithHeadings, WithStrictNullComparison
+class ProjectsExport implements FromCollection, WithHeadings, WithStrictNullComparison
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -17,20 +17,24 @@ class UsersExport implements FromCollection, WithHeadings, WithStrictNullCompari
     {
         return [
             'id',
-            'name',
-            'email',
-            'email_verified_at',
             'created_at',
             'updated_at',
-            'staff',
-            'year',
-            'admin',
-            'superadmin',
+            'user_id',
+            'title',
+            'description',
+            'UG',
+            'MSc',
+            'experimental',
+            'computational',
+            'hidden',
+            'popularity',
+            'selected_user_id',
+            'selected_user2_id'
         ];
     }
 
     public function collection()
     {
-        return User::all();
+        return Project::all();
     }
 }
