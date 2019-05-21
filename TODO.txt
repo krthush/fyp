@@ -1,7 +1,5 @@
 HIGH TODOs:
 
-	At the end remove ability for staff to select projects - redundant and makes it confusing
-
 	Make super uber admin portal for ambrose so he can roll out student selection, staff selection for specific student ranks (e.g. only let them select rank 1 students) and so on... IMPORTANT: from this he should also be able to export tables
 
 LOW TODOs:
@@ -13,6 +11,8 @@ LOW TODOs:
 	Submit projects button? To email or something? Limit number of submissions?
 
 	Sliders for % experimental, computational, etc. I.E. overall breakdown of projects
+
+	Make controller/routes logic more fail proof -> e.g. redirect students trying to go/do illegal things + prevent staff from selecting projects through routes, etc...
 
 From earlier TODOs:
  
@@ -29,6 +29,8 @@ From earlier TODOs:
 	There maybe an easier way to display the individual user's like order on the project page rather than a double forloop -> look into this
 
 DONE:
+
+	At the end remove ability for staff to select projects - redundant and makes it confusing
 
 	Need to fix pagination, only a small bug where on some pages when using "orberby" the ranking isn't correct
 
