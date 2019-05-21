@@ -378,18 +378,20 @@
                 <div class="row">
                     <div class="col">
 
-                    @if ($project->isLiked)
-                        <!-- Button Trigger -->
-                        <a href="{{ route('like-project', $project) }}"><button type="button" class="btn btn-outline-secondary mt-3">Deselect Project</button></a>
+                    @if (Auth::user()->staff != 1)
+                        @if ($project->isLiked)
+                            <!-- Button Trigger -->
+                            <a href="{{ route('like-project', $project) }}"><button type="button" class="btn btn-outline-secondary mt-3">Deselect Project</button></a>
 
-                        <!-- Button Trigger -->
-                        <a href="{{ route('rankup-project', $project) }}"><button type="button" class="btn btn-outline-secondary mt-3">Rank-Up Project</button></a>
+                            <!-- Button Trigger -->
+                            <a href="{{ route('rankup-project', $project) }}"><button type="button" class="btn btn-outline-secondary mt-3">Rank-Up Project</button></a>
 
-                        <!-- Button Trigger -->
-                        <a href="{{ route('rankdown-project', $project) }}"><button type="button" class="btn btn-outline-secondary mt-3">Rank-Down Project</button></a>
-                    @else
-                        <!-- Button Trigger -->
-                        <a href="{{ route('like-project', $project) }}"><button type="button" class="btn btn-outline-secondary mt-3" >Select Project</button></a>
+                            <!-- Button Trigger -->
+                            <a href="{{ route('rankdown-project', $project) }}"><button type="button" class="btn btn-outline-secondary mt-3">Rank-Down Project</button></a>
+                        @else
+                            <!-- Button Trigger -->
+                            <a href="{{ route('like-project', $project) }}"><button type="button" class="btn btn-outline-secondary mt-3" >Select Project</button></a>
+                        @endif
                     @endif
                     
                     </div>
