@@ -9,7 +9,7 @@
         "algolia/algoliasearch-client-php": "^1.27",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
-        "laravel/scout": "^6.1",
+        "laravel/scout": "7.0",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.4.0",
         "flynsarmy/csv-seeder": "1.0.*"
