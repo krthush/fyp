@@ -33,7 +33,11 @@
                     <form id="searchProjectForm" name="searchProjectForm" method="GET" action="{{ route('search-projects') }}">
                         <div class="form-group">
                             <div class="input-group input-group-md">
-                                <input class="form-control" type="text" placeholder="What are you looking for?" name="query">
+                                @if($search != "")
+                                    <input class="form-control" type="text" value="{{ $search }}" name="query">
+                                @else
+                                    <input class="form-control" type="text" placeholder="What are you looking for?" name="query">
+                                @endif
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Search</button>
                                 </div>
