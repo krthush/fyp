@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->boolean('staff');
             $table->tinyInteger('year')->default(0);
+            $table->boolean('admin');
+            $table->boolean('superadmin');
         });
     }
 

@@ -12,8 +12,7 @@ class StaffTableSeeder extends Seeder
     public function run()
     {
         DB::table('staff')->insert([
-            'email' => 'test@example.com',
-            'name' => 'test'
+            'email' => 'test@example.com'
         ]);
     }
 }
