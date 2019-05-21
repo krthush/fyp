@@ -277,7 +277,7 @@ class ProjectController extends Controller
 
         $popularity = $project->likes->count();
 
-        if ($project->user_id === $userID) {
+        if ($project->user_id === $userID || $user->admin == 1) {
 
             Project::where('id', $project->id)->update([
 
@@ -326,7 +326,7 @@ class ProjectController extends Controller
         $project = Project::findOrFail(request('id'));
 
 
-        if ($project->user_id === $userID) {
+        if ($project->user_id === $userID || $user->admin == 1) {
 
             Project::where('id',request('id'))->delete();
 

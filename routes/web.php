@@ -17,21 +17,28 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// project routes
-Route::get('/dashboard', 'ProjectController@dashboard')->name('dashboard');
-Route::get('/projects', 'ProjectController@projects')->name('projects');
-Route::get('/projects/{project}','ProjectController@show')->name('project');
-Route::post('/projects/new','ProjectController@store')->name('new-project');
-Route::delete('/projects/delete','ProjectController@destroy')->name('delete-project');
-Route::patch('/projects/update/{project}/','ProjectController@update')->name('update-project');
-Route::get('projects/match/{project}/{student_id}','ProjectController@match')->name('match-project');
-Route::get('projects/unmatch/{project}/{student_id}','ProjectController@unmatch')->name('unmatch-project');
+// Use the built in auth middleware to allow only logged in users
+Route::group(['middleware' => ['auth']], function() {
+    // your routes
 
-// like routes
-Route::get('projects/like/{project}','LikeController@like')->name('like-project');
-Route::get('/projects/rankup/{project}/','LikeController@rankup')->name('rankup-project');
-Route::get('/projects/rankdown/{project}/','LikeController@rankdown')->name('rankdown-project');
-Route::patch('/projects/reorder','LikeController@reorder')->name('reorder-projects');
+    // project routes
+	Route::get('/dashboard', 'ProjectController@dashboard')->name('dashboard');
+	Route::get('/projects', 'ProjectController@projects')->name('projects');
+	Route::get('/projects/{project}','ProjectController@show')->name('project');
+	Route::post('/projects/new','ProjectController@store')->name('new-project');
+	Route::delete('/projects/delete','ProjectController@destroy')->name('delete-project');
+	Route::patch('/projects/update/{project}/','ProjectController@update')->name('update-project');
+	Route::get('projects/match/{project}/{student_id}','ProjectController@match')->name('match-project');
+	Route::get('projects/unmatch/{project}/{student_id}','ProjectController@unmatch')->name('unmatch-project');
 
-// search routes
-Route::get('/search','ProjectController@search')->name('search-projects');
+	// like routes
+	Route::get('projects/like/{project}','LikeController@like')->name('like-project');
+	Route::get('/projects/rankup/{project}/','LikeController@rankup')->name('rankup-project');
+	Route::get('/projects/rankdown/{project}/','LikeController@rankdown')->name('rankdown-project');
+	Route::patch('/projects/reorder','LikeController@reorder')->name('reorder-projects');
+
+	// search routes
+	Route::get('/search','ProjectController@search')->name('search-projects');
+	
+});
+

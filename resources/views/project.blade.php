@@ -113,8 +113,15 @@
                         @endif
 
                         @if (Auth::user()->id === $project->user_id || Auth::user()->admin == 1)
-                            <!-- Button Trigger -->
-                            <button type="button" class="btn btn-outline-secondary mt-3" data-toggle="modal" data-target="#editProjectModal">Edit Project</button>
+
+                            {!! Form::open(['route' => 'delete-project', 'method' => 'DELETE']) !!}
+                                <input type="hidden" value="{{ $project->id }}" name="id">
+                                <!-- Button Trigger -->
+                                <button type="button" class="btn btn-outline-secondary mt-3" data-toggle="modal" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Delete Project</button>
+
+                                <!-- Button Trigger -->
+                                <button type="button" class="btn btn-outline-secondary mt-3" data-toggle="modal" data-target="#editProjectModal">Edit Project</button>
+                            {!! Form::close()  !!}
 
                             <!-- Modal -->
                             <div class="modal fade bd-example-modal-lg" id="editProjectModal" tabindex="-1" role="dialog" aria-labelledby="editProjectModalLabel" aria-hidden="true">

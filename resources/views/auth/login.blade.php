@@ -8,6 +8,9 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
+
+                    <!-- <div class="mb-3">Please login or <a href="{{ route('register') }}">register</a> to use the site.</div> -->
+
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
