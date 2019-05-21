@@ -282,6 +282,11 @@
                         @endif
                     @endif
 
+                    @if (Auth::user()->admin == 1)
+                    <!-- Button Trigger -->
+                    <a href="/projects/{{ $project->id }}"><button type="button" class="btn btn-outline-secondary mt-3">View Project</button></a>
+                    @endif
+
                     </div>
                 </div>
 
@@ -396,6 +401,11 @@
                             <!-- Button Trigger -->
                             <a href="{{ route('like-project', $project) }}"><button type="button" class="btn btn-outline-secondary mt-3" >Select Project</button></a>
                         @endif
+                    @endif
+
+                    @if (Auth::user()->admin == 1)
+                    <!-- Button Trigger -->
+                    <a href="/projects/{{ $project->id }}"><button type="button" class="btn btn-outline-secondary mt-3">View Project</button></a>
                     @endif
                     
                     </div>
