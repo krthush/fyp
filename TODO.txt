@@ -6,8 +6,6 @@ HIGH TODOs:
 
 LOW TODOs:
 
-	Show total number of searched projects/total number of projects
-
 	Add user choosen pagination size (like show 25, 50, 100, etc.)
 
 	AJAX the select , rank up, rank down, deselect project
@@ -35,6 +33,9 @@ From earlier TODOs:
 	There maybe an easier way to display the individual user's like order on the project page rather than a double forloop -> look into this
 
 DONE:
+
+
+	Show total number of searched projects/total number of projects
 
 	Create overview table for staff to see all students liking projects and their order (instead of having to go individual projects)
 	

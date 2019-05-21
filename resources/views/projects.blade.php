@@ -35,18 +35,22 @@
                             <div class="input-group input-group-md">
                                 <input class="form-control" type="text" placeholder="What are you looking for?" name="query">
                                 <div class="input-group-append">
-                                    <select class="btn btn-outline-secondary rounded-0" name="order">
+                                    <button class="btn btn-outline-secondary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Search</button>
+                                </div>
+                            </div>
+                            <div class="input-group input-group-md mt-2">
+                                <span style="display: flex; align-items: center;"> Current number of projects being viewed: {{ $projects->total() }} </span>
+                                <div style="margin-left:auto; margin-right:0;">
+                                    <select class="btn btn-outline-secondary" name="order">
                                         <option value="relevance">Order by Relevance</option>
                                         <option value="name">Order by Name</option>
                                         <option value="author">Order by Author</option>
                                         <option value="date">Order by Date</option>
                                         <option value="popularity">Order by Popularity</option>
                                     </select>
-                                    <button class="btn btn-outline-secondary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Search</button>
-                                </div>
-                                <div class="d-flex flex-row-reverse">
-                                    <button id="target" type="button" class="btn btn-light">
-                                      <i class="fa fa-sort" aria-hidden="true"></i>
+                                    <button id="target" type="button" class="btn btn-light btn-outline-secondary ml-2">
+                                        Reverse Order
+                                        <i class="fa fa-sort" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </div>
