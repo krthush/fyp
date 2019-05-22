@@ -33,6 +33,9 @@
                     <!-- Button Trigger -->
                     <a href="{{ route('export-projects') }}"><button type="button" class="btn btn-outline-secondary mt-3">Export Projects</button></a>
 
+                    <!-- Button Trigger -->
+                    <a href="{{ route('export-selected-project-users') }}"><button type="button" class="btn btn-outline-secondary mt-3">Export Selected Project Users</button></a>
+
                 </div>
             </div>
         </div>

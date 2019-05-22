@@ -1,5 +1,7 @@
 HIGH TODOs:
 
+	Need to think about what happens after projects are selected -> should all the "likes" for other students be deleted? I.E. removes that option from them. ? Presume this requires that phased roll out Ambrose was talking
+
 	Make super uber admin portal for ambrose so he can roll out student selection, staff selection for specific student ranks (e.g. only let them select rank 1 students) and so on... IMPORTANT: from this he should also be able to export tables
 
 LOW TODOs:

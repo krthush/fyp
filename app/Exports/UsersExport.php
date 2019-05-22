@@ -25,7 +25,7 @@ class UsersExport implements FromCollection, WithHeadings, WithStrictNullCompari
             'staff',
             'year',
             'admin',
-            'superadmin',
+            'superadmin'
         ];
     }
 

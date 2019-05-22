@@ -44,5 +44,6 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/superadmin','SuperAdminController@show')->name('superadmin');
 	Route::get('/superadmin/export-users','SuperAdminController@exportUsers')->name('export-users');
 	Route::get('/superadmin/export-projects','SuperAdminController@exportProjects')->name('export-projects');
+	Route::get('/superadmin/export-selected-project-users','SuperAdminController@exportSelectedProjectUsers')->name('export-selected-project-users');
 });
 
