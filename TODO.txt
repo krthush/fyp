@@ -12,7 +12,7 @@ LOW TODOs:
 
 	Sliders for % experimental, computational, etc. I.E. overall breakdown of projects
 
-	Make controller/routes logic more fail proof -> e.g. redirect students trying to go/do illegal things + prevent staff from selecting projects through routes, etc...
+	Make controller/routes logic more fail proof -> clean it up using middleware. Also work on generation of dashboard table-> use more efficient collection generation methods.
 
 From earlier TODOs:
  
