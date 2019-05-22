@@ -1,10 +1,8 @@
 HIGH TODOs:
 
-	Need to think about what happens after projects are selected -> should all the "likes" for other students be deleted? I.E. removes that option from them. ? Presume this requires that phased roll out Ambrose was talking
-
-	Make super uber admin portal for ambrose so he can roll out student selection, staff selection for specific student ranks (e.g. only let them select rank 1 students) and so on... IMPORTANT: from this he should also be able to export tables
-
 LOW TODOs:
+
+	Need to think about what happens after projects are selected -> should all the "likes" for other students be deleted? I.E. removes that option from them. ? Presume this requires that phased roll out Ambrose was talking
 
 	AJAX the select , rank up, rank down, deselect project
 
@@ -31,6 +29,8 @@ From earlier TODOs:
 	There maybe an easier way to display the individual user's like order on the project page rather than a double forloop -> look into this
 
 DONE:
+
+	Make super uber admin portal for ambrose so he can roll out student selection, staff selection for specific student ranks (e.g. only let them select rank 1 students) and so on... IMPORTANT: from this he should also be able to export tables
 
 	At the end remove ability for staff to select projects - redundant and makes it confusing
 
