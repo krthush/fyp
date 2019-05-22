@@ -133,8 +133,11 @@ class SuperAdminController extends Controller
 
 		if ($user->superadmin == true) {
 		
+			// Change setting for all matching
 			if (config('superadmin-settings.active_project_all_matching') == true) {
 				$value = false;
+				//If true, toggling switch to false, so remember to stop 1st matching aswell
+				Config::write('superadmin-settings.active_project_first_matching', false);
 			} else {
 				$value = true;
 			}

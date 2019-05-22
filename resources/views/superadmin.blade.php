@@ -29,7 +29,7 @@
 
                     <div class="row">
                         <div class="col-10 align-self-center">
-                            Toggle site wide viewing of projects:
+                            Toggle setting to allow viewing of projects:
                         </div>
                         <div class="col-2 d-flex flex-row-reverse">
                             @if($active_project_viewing == true)
@@ -44,7 +44,7 @@
 
                     <div class="row">
                         <div class="col-10 align-self-center">
-                            Toggle site wide selection and ranking of projects by students:
+                            Toggle setting to allow selection and ranking of projects by students:
                         </div>
                         <div class="col-2 d-flex flex-row-reverse">
                             @if($active_project_selection == true)
@@ -59,13 +59,13 @@
 
                     <div class="row">
                         <div class="col-10 align-self-center">
-                            Toggle site wide staff matching of projects to 1st rank students only:
+                            Toggle setting to allow staff matching of projects to students:
                         </div>
                         <div class="col-2 d-flex flex-row-reverse">
-                            @if($active_project_first_matching == true)
-                                <input id="toggle-project-first-matching" type="checkbox" data-toggle="toggle" data-size="sm" checked>
+                            @if($active_project_all_matching == true)
+                                <input id="toggle-project-all-matching" type="checkbox" data-toggle="toggle" data-size="sm" checked>
                             @else
-                                <input id="toggle-project-first-matching" type="checkbox" data-toggle="toggle" data-size="sm">
+                                <input id="toggle-project-all-matching" type="checkbox" data-toggle="toggle" data-size="sm">
                             @endif
                         </div>
                     </div>
@@ -74,13 +74,21 @@
 
                     <div class="row">
                         <div class="col-10 align-self-center">
-                            Toggle site wide staff matching of projects to any rank students:
+                            Toggle setting to limit staff matching of projects to <b>1st rank students only</b>:
                         </div>
                         <div class="col-2 d-flex flex-row-reverse">
                             @if($active_project_all_matching == true)
-                                <input id="toggle-project-all-matching" type="checkbox" data-toggle="toggle" data-size="sm" checked>
+                                @if($active_project_first_matching == true)
+                                    <input id="toggle-project-first-matching" type="checkbox" data-toggle="toggle" data-size="sm" checked>
+                                @else
+                                    <input id="toggle-project-first-matching" type="checkbox" data-toggle="toggle" data-size="sm">
+                                @endif
                             @else
-                                <input id="toggle-project-all-matching" type="checkbox" data-toggle="toggle" data-size="sm">
+                                @if($active_project_first_matching == true)
+                                    <input id="toggle-project-first-matching" type="checkbox" data-toggle="toggle" data-size="sm" checked disabled>
+                                @else
+                                    <input id="toggle-project-first-matching" type="checkbox" data-toggle="toggle" data-size="sm" disabled>
+                                @endif
                             @endif
                         </div>
                     </div>
