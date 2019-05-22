@@ -19,7 +19,7 @@ class ProjectController extends Controller
         if ($active_project_viewing == false) {
 
             return view('welcome')->withErrors([
-                'Project viewing is currently shutdown'
+                'Viewing all projects is currently shutdown'
             ]);
 
         } else {
@@ -60,58 +60,83 @@ class ProjectController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        $paginate = request('paginate');
-        $order = request('order');
+        $active_project_viewing = config('superadmin-settings.active_project_viewing');
 
-        $search = $request->get('query');
+        if ($active_project_viewing == false) {
 
-        if (request('paginate') == 'all') {
-
-            if (request('order') == 'name') {
-                $projects = Project::search($search)->where('hidden', 0)->within('orderByName')->where('selected_user_id', 0)->where('selected_user2_id', 0)->get();
-                // dd($projects);
-            } else if (request('order') == 'author') {
-                $projects = Project::search($search)->where('hidden', 0)->within('orderByAuthor')->where('selected_user_id', 0)->where('selected_user2_id', 0)->get();
-            } else if (request('order') == 'date') {
-                $projects = Project::search($search)->where('hidden', 0)->within('orderByDate')->where('selected_user_id', 0)->where('selected_user2_id', 0)->get();
-            } else if (request('order') == 'popularity') {
-                $projects = Project::search($search)->where('hidden', 0)->within('orderByPopularity')->where('selected_user_id', 0)->where('selected_user2_id', 0)->get();
-            } else {
-                $projects = Project::search($search)->where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->get();
-            }
+            return view('welcome')->withErrors([
+                'Viewing all projects is currently shutdown'
+            ]);
 
         } else {
 
-            if (request('order') == 'name') {
-                $projects = Project::search($search)->where('hidden', 0)->within('orderByName')->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(request('paginate'));
-                $projects->appends(['order' => 'name']);
-            } else if (request('order') == 'author') {
-                $projects = Project::search($search)->where('hidden', 0)->within('orderByAuthor')->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(request('paginate'));
-                $projects->appends(['order' => 'author']);
-            } else if (request('order') == 'date') {
-                $projects = Project::search($search)->where('hidden', 0)->within('orderByDate')->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(request('paginate'));
-                $projects->appends(['order' => 'date']);
-            } else if (request('order') == 'popularity') {
-                $projects = Project::search($search)->where('hidden', 0)->within('orderByPopularity')->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(request('paginate'));
-                $projects->appends(['order' => 'popularity']);
+            $paginate = request('paginate');
+            $order = request('order');
+
+            $search = $request->get('query');
+
+            if (request('paginate') == 'all') {
+
+                if (request('order') == 'name') {
+                    $projects = Project::search($search)->where('hidden', 0)->within('orderByName')->where('selected_user_id', 0)->where('selected_user2_id', 0)->get();
+                    // dd($projects);
+                } else if (request('order') == 'author') {
+                    $projects = Project::search($search)->where('hidden', 0)->within('orderByAuthor')->where('selected_user_id', 0)->where('selected_user2_id', 0)->get();
+                } else if (request('order') == 'date') {
+                    $projects = Project::search($search)->where('hidden', 0)->within('orderByDate')->where('selected_user_id', 0)->where('selected_user2_id', 0)->get();
+                } else if (request('order') == 'popularity') {
+                    $projects = Project::search($search)->where('hidden', 0)->within('orderByPopularity')->where('selected_user_id', 0)->where('selected_user2_id', 0)->get();
+                } else {
+                    $projects = Project::search($search)->where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->get();
+                }
+
             } else {
-                $projects = Project::search($search)->where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(request('paginate'));
+
+                if (request('order') == 'name') {
+                    $projects = Project::search($search)->where('hidden', 0)->within('orderByName')->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(request('paginate'));
+                    $projects->appends(['order' => 'name']);
+                } else if (request('order') == 'author') {
+                    $projects = Project::search($search)->where('hidden', 0)->within('orderByAuthor')->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(request('paginate'));
+                    $projects->appends(['order' => 'author']);
+                } else if (request('order') == 'date') {
+                    $projects = Project::search($search)->where('hidden', 0)->within('orderByDate')->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(request('paginate'));
+                    $projects->appends(['order' => 'date']);
+                } else if (request('order') == 'popularity') {
+                    $projects = Project::search($search)->where('hidden', 0)->within('orderByPopularity')->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(request('paginate'));
+                    $projects->appends(['order' => 'popularity']);
+                } else {
+                    $projects = Project::search($search)->where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(request('paginate'));
+                }
+
+                $projects->appends(['paginate' => request('paginate')]);
+
             }
 
-            $projects->appends(['paginate' => request('paginate')]);
+            $userProjects = Project::where('user_id',$userID)->get();
+            $selectUserProjects=Project::where('user_id',$userID)->pluck('title','id')->all();
+            $likedProjects = $user->likedProjects()->get();
 
-        }
+            // If there are results return them, if none, return the error message.
+            if ($projects->count()) {
 
-        $userProjects = Project::where('user_id',$userID)->get();
-        $selectUserProjects=Project::where('user_id',$userID)->pluck('title','id')->all();
-        $likedProjects = $user->likedProjects()->get();
+                return view(
+                        'projects',
+                        compact(                        
+                            'projects',
+                            'userProjects',
+                            'selectUserProjects',
+                            'likedProjects',
+                            'paginate',
+                            'order',
+                            'search'
+                        )
+                    );
 
-        // If there are results return them, if none, return the error message.
-        if ($projects->count()) {
+            } else {
 
-            return view(
+                return view(
                     'projects',
-                    compact(                        
+                    compact(                    
                         'projects',
                         'userProjects',
                         'selectUserProjects',
@@ -120,24 +145,10 @@ class ProjectController extends Controller
                         'order',
                         'search'
                     )
-                );
-
-        } else {
-
-            return view(
-                'projects',
-                compact(                    
-                    'projects',
-                    'userProjects',
-                    'selectUserProjects',
-                    'likedProjects',
-                    'paginate',
-                    'order',
-                    'search'
-                )
-            )->withErrors([
-                'No results found, please try with different keywords.'
-            ]);
+                )->withErrors([
+                    'No results found, please try with different keywords.'
+                ]);
+            }
         }
     }
 
@@ -147,18 +158,29 @@ class ProjectController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        $usersLiked = $project->getUsersLiked;
+        $active_project_viewing = config('superadmin-settings.active_project_viewing');
 
-        $likeables = Like::where('likeable_id',$project->id)->get();
+        if ($active_project_viewing == true || $project->user_id === $userID) {
 
-        return view(
-            'project',
-            compact(                
+            $usersLiked = $project->getUsersLiked;
+
+            $likeables = Like::where('likeable_id',$project->id)->get();
+
+            return view(
                 'project',
-                'usersLiked',
-                'likeables'
-            )
-        );
+                compact(                
+                    'project',
+                    'usersLiked',
+                    'likeables'
+                )
+            );
+
+        } else {
+
+            return view('welcome')->withErrors([
+                'Viewing all projects is currently shutdown'
+            ]);
+        }
     }
 
     public function dashboard() {
