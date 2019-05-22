@@ -8,31 +8,146 @@ use App\Exports\ProjectsExport;
 use App\Exports\SelectedProjectUsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use Config;
 
 class SuperAdminController extends Controller
 {
 	public function show() {
 
-    	return view(
-            'superadmin',
-            // compact(                    
-            //     'projects',
-            // )
-        );
+		$user = auth()->user();
+
+		if ($user->superadmin == true) {
+
+			$superadmin = true;
+			$active_project_viewing = config('superadmin-settings.active_project_viewing');
+			$active_project_selection = config('superadmin-settings.active_project_selection');
+			$active_project_first_matching = config('superadmin-settings.active_project_first_matching');
+			$active_project_all_matching = config('superadmin-settings.active_project_all_matching');
+
+	    	return view(
+	            	'superadmin',
+		            compact(                    
+		                'superadmin',
+		                'active_project_viewing',
+		                'active_project_selection',
+		                'active_project_first_matching',
+		                'active_project_all_matching',
+		            )
+	        );
+
+		} else {
+			return back()->withErrors([
+                'You must be a superadmin to do this.'
+            ]);
+		}
+
 	}
 
-	public function exportUsers() 
-    {
+	public function exportUsers() {
+
         return Excel::download(new UsersExport, 'users.xlsx');
     }
 
-   	public function exportProjects() 
-    {
+   	public function exportProjects() {
+
         return Excel::download(new ProjectsExport, 'projects.xlsx');
     }
 
-    public function exportSelectedProjectUsers() 
-    {
+    public function exportSelectedProjectUsers() {
+
         return Excel::download(new SelectedProjectUsersExport, 'projects.xlsx');
     }
+
+    public function toggleProjectViewing() {
+
+    	$user = auth()->user();
+
+		if ($user->superadmin == true) {
+		
+			if (config('superadmin-settings.active_project_viewing') == true) {
+				$value = false;
+			} else {
+				$value = true;
+			}
+
+			Config::write('superadmin-settings.active_project_viewing', $value);
+
+			return back()->with('success', 'Setting edited successfully.');
+
+		} else {
+			return back()->withErrors([
+                'You must be a superadmin to do this.'
+            ]);
+		}
+    }
+
+    public function toggleProjectSelection() {
+
+    	$user = auth()->user();
+
+		if ($user->superadmin == true) {
+		
+			if (config('superadmin-settings.active_project_selection') == true) {
+				$value = false;
+			} else {
+				$value = true;
+			}
+
+			Config::write('superadmin-settings.active_project_selection', $value);
+
+			return back()->with('success', 'Setting edited successfully.');
+
+		} else {
+			return back()->withErrors([
+                'You must be a superadmin to do this.'
+            ]);
+		}
+    }
+
+    public function toggleProjectFirstMatching() {
+
+    	$user = auth()->user();
+
+		if ($user->superadmin == true) {
+		
+			if (config('superadmin-settings.active_project_first_matching') == true) {
+				$value = false;
+			} else {
+				$value = true;
+			}
+
+			Config::write('superadmin-settings.active_project_first_matching', $value);
+
+			return back()->with('success', 'Setting edited successfully.');
+
+		} else {
+			return back()->withErrors([
+                'You must be a superadmin to do this.'
+            ]);
+		}
+    }
+
+    public function toggleProjectAllMatching() {
+
+    	$user = auth()->user();
+
+		if ($user->superadmin == true) {
+		
+			if (config('superadmin-settings.active_project_all_matching') == true) {
+				$value = false;
+			} else {
+				$value = true;
+			}
+
+			Config::write('superadmin-settings.active_project_all_matching', $value);
+
+			return back()->with('success', 'Setting edited successfully.');
+
+		} else {
+			return back()->withErrors([
+                'You must be a superadmin to do this.'
+            ]);
+		}
+    }
+
 }

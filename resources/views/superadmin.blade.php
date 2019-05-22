@@ -27,6 +27,68 @@
                         </div>
                     @endif
 
+                    <div class="row">
+                        <div class="col-10 align-self-center">
+                            Toggle site wide viewing of projects:
+                        </div>
+                        <div class="col-2 d-flex flex-row-reverse">
+                            @if($active_project_viewing == true)
+                                <input id="toggle-project-viewing" type="checkbox" data-toggle="toggle" data-size="sm" checked>
+                            @else
+                                <input id="toggle-project-viewing" type="checkbox" data-toggle="toggle" data-size="sm">
+                            @endif
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-10 align-self-center">
+                            Toggle site wide selection and ranking of projects by students:
+                        </div>
+                        <div class="col-2 d-flex flex-row-reverse">
+                            @if($active_project_selection == true)
+                                <input id="toggle-project-selection" type="checkbox" data-toggle="toggle" data-size="sm" checked>
+                            @else
+                                <input id="toggle-project-selection" type="checkbox" data-toggle="toggle" data-size="sm">
+                            @endif
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-10 align-self-center">
+                            Toggle site wide staff matching of projects to 1st rank students only:
+                        </div>
+                        <div class="col-2 d-flex flex-row-reverse">
+                            @if($active_project_first_matching == true)
+                                <input id="toggle-project-first-matching" type="checkbox" data-toggle="toggle" data-size="sm" checked>
+                            @else
+                                <input id="toggle-project-first-matching" type="checkbox" data-toggle="toggle" data-size="sm">
+                            @endif
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-10 align-self-center">
+                            Toggle site wide staff matching of projects to any rank students:
+                        </div>
+                        <div class="col-2 d-flex flex-row-reverse">
+                            @if($active_project_all_matching == true)
+                                <input id="toggle-project-all-matching" type="checkbox" data-toggle="toggle" data-size="sm" checked>
+                            @else
+                                <input id="toggle-project-all-matching" type="checkbox" data-toggle="toggle" data-size="sm">
+                            @endif
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    The following buttons allow for downloading of excel spreadsheets of relevant FYP selection data:<br>
+
                     <!-- Button Trigger -->
                     <a href="{{ route('export-users') }}"><button type="button" class="btn btn-outline-secondary mt-3">Export Users</button></a>
 

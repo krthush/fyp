@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Tekreme73\Laravel\ConfigWriter\ServiceProvider::class,
 
         /*
          * Application Service Providers...

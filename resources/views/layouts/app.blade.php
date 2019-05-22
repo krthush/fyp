@@ -23,6 +23,9 @@
     <!-- Custom -->
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
 
+    <!-- Bootstrap Toggle -->
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/css/bootstrap4-toggle.min.css" rel="stylesheet">
+
 </head>
 
 <body>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d151f2d6976b7bb2794e787db772a3e",
+    "content-hash": "e3b5ecdcd2e781e309fa3ff0152a325a",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -3160,6 +3160,52 @@
                 "dump"
             ],
             "time": "2019-05-01T12:55:36+00:00"
+        },
+        {
+            "name": "tekreme73/laravel-config-writer",
+            "version": "v2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tekreme73/laravel-config-writer.git",
+                "reference": "f0de699b20cb0ce74c7de5692a63d41c9730a128"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tekreme73/laravel-config-writer/zipball/f0de699b20cb0ce74c7de5692a63d41c9730a128",
+                "reference": "f0de699b20cb0ce74c7de5692a63d41c9730a128",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "~5.0.",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tekreme73\\Laravel\\ConfigWriter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rémi Rebillard",
+                    "email": "tekreme73@gmail.com"
+                }
+            ],
+            "description": "Laravel provider to be able to rewrite configuration",
+            "keywords": [
+                "config",
+                "laravel",
+                "provider",
+                "write"
+            ],
+            "time": "2018-10-29T10:50:55+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

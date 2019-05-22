@@ -45,5 +45,9 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/superadmin/export-users','SuperAdminController@exportUsers')->name('export-users');
 	Route::get('/superadmin/export-projects','SuperAdminController@exportProjects')->name('export-projects');
 	Route::get('/superadmin/export-selected-project-users','SuperAdminController@exportSelectedProjectUsers')->name('export-selected-project-users');
+	Route::get('/superadmin/toggle-project-viewing','SuperAdminController@toggleProjectViewing')->name('toggle-project-viewing');
+	Route::get('/superadmin/toggle-project-selection','SuperAdminController@toggleProjectSelection')->name('toggle-project-selection');
+	Route::get('/superadmin/toggle-project-first-matching','SuperAdminController@toggleProjectFirstMatching')->name('toggle-project-first-matching');
+	Route::get('/superadmin/toggle-project-all-matching','SuperAdminController@toggleProjectAllMatching')->name('toggle-project-all-matching');
 });
 

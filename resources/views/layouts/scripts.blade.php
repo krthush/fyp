@@ -8,6 +8,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
+<!-- Bootstrap Toggle -->
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/js/bootstrap4-toggle.min.js"></script>
+
 <!-- jQuery UI script -->
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
@@ -126,3 +129,24 @@ $( "#target" ).click(function() {
       });
   });
 </script>
+
+
+<!-- Super Admin Scripts -->
+@isset($superadmin)
+<script type="text/javascript">
+  $(function() {
+    $('#toggle-project-viewing').change(function() {
+      location.href = "/superadmin/toggle-project-viewing";
+    });
+    $('#toggle-project-selection').change(function() {
+      location.href = "/superadmin/toggle-project-selection";
+    });
+    $('#toggle-project-first-matching').change(function() {
+      location.href = "/superadmin/toggle-project-first-matching";
+    });
+    $('#toggle-project-all-matching').change(function() {
+      location.href = "/superadmin/toggle-project-all-matching";
+    });
+  });  
+</script>
+@endisset
