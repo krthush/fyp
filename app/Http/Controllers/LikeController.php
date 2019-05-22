@@ -21,35 +21,46 @@ class LikeController extends Controller
 
     public function like($id) {
 
-        $type = 'App\Project';
+        $active_project_selection = config('superadmin-settings.active_project_selection');
 
-        $project = Project::find($id);
+        if ($active_project_selection == false) {
 
-        $existing_like = Like::withTrashed()->whereLikeableType($type)->whereLikeableId($id)->whereUserId(Auth::id())->first();
-
-        $max_like_order = Like::withTrashed()->whereLikeableType($type)->whereUserId(Auth::id())->max('order_column');
-
-
-        if (is_null($existing_like)) {
-            Like::create([
-                'user_id'       => Auth::id(),
-                'likeable_id'   => $id,
-                'likeable_type' => $type,
-                'order_column' => $max_like_order+1,
+            return back()->withErrors([
+                'Project selection & deselection is currently shutdown'
             ]);
 
-            $project->update(['popularity'=> $project->likes->count() ]);
-
-            return redirect()->back()->with('success', 'Project selected successfully.');
         } else {
-            if (is_null($existing_like->deleted_at)) {
-                $existing_like->delete();
+
+            $type = 'App\Project';
+
+            $project = Project::find($id);
+
+            $existing_like = Like::withTrashed()->whereLikeableType($type)->whereLikeableId($id)->whereUserId(Auth::id())->first();
+
+            $max_like_order = Like::withTrashed()->whereLikeableType($type)->whereUserId(Auth::id())->max('order_column');
+
+
+            if (is_null($existing_like)) {
+                Like::create([
+                    'user_id'       => Auth::id(),
+                    'likeable_id'   => $id,
+                    'likeable_type' => $type,
+                    'order_column' => $max_like_order+1,
+                ]);
+
                 $project->update(['popularity'=> $project->likes->count() ]);
-                return redirect()->back()->with('success', 'Project deselected successfully.');
-            } else {
-                $existing_like->restore();
-                $project->update(['popularity'=> $project->likes->count() ]);
+
                 return redirect()->back()->with('success', 'Project selected successfully.');
+            } else {
+                if (is_null($existing_like->deleted_at)) {
+                    $existing_like->delete();
+                    $project->update(['popularity'=> $project->likes->count() ]);
+                    return redirect()->back()->with('success', 'Project deselected successfully.');
+                } else {
+                    $existing_like->restore();
+                    $project->update(['popularity'=> $project->likes->count() ]);
+                    return redirect()->back()->with('success', 'Project selected successfully.');
+                }
             }
         }
     }

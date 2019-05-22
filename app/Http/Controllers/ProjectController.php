@@ -16,7 +16,7 @@ class ProjectController extends Controller
 
         $active_project_viewing = config('superadmin-settings.active_project_viewing');
 
-        if ($active_project_viewing == false) {
+        if ($active_project_viewing == 0) {
 
             return view('welcome')->withErrors([
                 'Viewing all projects is currently shutdown'
@@ -62,7 +62,7 @@ class ProjectController extends Controller
 
         $active_project_viewing = config('superadmin-settings.active_project_viewing');
 
-        if ($active_project_viewing == false) {
+        if ($active_project_viewing == 0) {
 
             return view('welcome')->withErrors([
                 'Viewing all projects is currently shutdown'
@@ -212,33 +212,33 @@ class ProjectController extends Controller
         $userID = $user->getAuthIdentifier();
 
         if (request('UG') == "true") {
-            $UG = true;
+            $UG = 1;
         } else {
-            $UG = false;
+            $UG = 0;
         }
 
         if (request('MSc') == "true") {
-            $MSc = true;
+            $MSc = 1;
         } else {
-            $MSc = false;
+            $MSc = 0;
         }
 
         if (request('experimental') == "true") {
-            $experimental = true;
+            $experimental = 1;
         } else {
-            $experimental = false;
+            $experimental = 0;
         }
 
         if (request('computational') == "true") {
-            $computational = true;
+            $computational = 1;
         } else {
-            $computational = false;
+            $computational = 0;
         }
 
         if (request('hidden') == "true") {
-            $hidden = true;
+            $hidden = 1;
         } else {
-            $hidden = false;
+            $hidden = 0;
         }
 
         $popularity = 0;
@@ -263,6 +263,10 @@ class ProjectController extends Controller
 
             'popularity' => $popularity,
 
+            'selected_user_id' => 0,
+
+            'selected_user2_id' => 0,
+
         ]);
 
         return redirect(route('dashboard'))->with('success', 'New Project added successfully.');
@@ -279,33 +283,33 @@ class ProjectController extends Controller
         $userID = $user->getAuthIdentifier();
 
         if (request('UG') == "true") {
-            $UG = true;
+            $UG = 1;
         } else {
-            $UG = false;
+            $UG = 0;
         }
 
         if (request('MSc') == "true") {
-            $MSc = true;
+            $MSc = 1;
         } else {
-            $MSc = false;
+            $MSc = 0;
         }
 
         if (request('experimental') == "true") {
-            $experimental = true;
+            $experimental = 1;
         } else {
-            $experimental = false;
+            $experimental = 0;
         }
 
         if (request('computational') == "true") {
-            $computational = true;
+            $computational = 1;
         } else {
-            $computational = false;
+            $computational = 0;
         }
 
         if (request('hidden') == "true") {
-            $hidden = true;
+            $hidden = 1;
         } else {
-            $hidden = false;
+            $hidden = 0;
         }
 
         $popularity = $project->likes->count();
