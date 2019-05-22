@@ -44,7 +44,7 @@
                             </div>
                             <div class="input-group input-group-md mt-2">
                                 <span style="display: flex; align-items: center;">
-                                    Current number of projects being viewed:
+                                    Displayed projects:
                                     @if($paginate != "all")
                                         {{ $projects->total() }}
                                     @else
