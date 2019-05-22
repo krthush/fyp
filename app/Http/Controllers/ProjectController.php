@@ -385,46 +385,57 @@ class ProjectController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        $student = User::find($student_id);
+        $active_project_all_matching = config('superadmin-settings.active_project_all_matching');
 
-        if ($student->isSelected()) {
+        if ($active_project_all_matching == 0) {
 
             return back()->withErrors([
-                'This student has already been selected for another project.'
+                'Selecting students is currently shutdown'
             ]);
 
         } else {
 
-            if ($project->user_id === $userID) {
+            $student = User::find($student_id);
 
-                if ($project->selected_user_id === 0) {
+            if ($student->isSelected()) {
 
-                    $project->update([
+                return back()->withErrors([
+                    'This student has already been selected for another project.'
+                ]);
 
-                            'selected_user_id' => $student_id,
+            } else {
 
-                    ]);
+                if ($project->user_id === $userID) {
+
+                    if ($project->selected_user_id === 0) {
+
+                        $project->update([
+
+                                'selected_user_id' => $student_id,
+
+                        ]);
+
+                    } else {
+
+                        $project->update([
+
+                                'selected_user2_id' => $student_id,
+
+                        ]);
+
+                    }
+
+                    return back()->with('success', 'Student selected successfully.');
 
                 } else {
 
-                    $project->update([
-
-                            'selected_user2_id' => $student_id,
-
+                    return back()->withErrors([
+                        'You can only select students for your own projects.'
                     ]);
 
                 }
 
-                return back()->with('success', 'Student selected successfully.');
-
-            } else {
-
-                return back()->withErrors([
-                    'You can only select students for your own projects.'
-                ]);
-
             }
-
         }
 
     }
@@ -435,35 +446,46 @@ class ProjectController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        if ($project->user_id === $userID) {
+        $active_project_all_matching = config('superadmin-settings.active_project_all_matching');
 
+        if ($active_project_all_matching == 0) {
 
-            if ($project->selected_user2_id == $student_id) {
-
-                $project->update([
-
-                        'selected_user2_id' => 0,
-
-                ]);
-
-            } else if ($project->selected_user_id == $student_id) {
-
-                $project->update([
-
-                        'selected_user_id' => 0,
-
-                ]);
-
-            }
-
-            return back()->with('success', 'Student deselected successfully.');
+            return back()->withErrors([
+                'Selecting students is currently shutdown'
+            ]);
 
         } else {
 
-            return back()->withErrors([
-                'You can only select students for your own projects.'
-            ]);
+            if ($project->user_id === $userID) {
 
+
+                if ($project->selected_user2_id == $student_id) {
+
+                    $project->update([
+
+                            'selected_user2_id' => 0,
+
+                    ]);
+
+                } else if ($project->selected_user_id == $student_id) {
+
+                    $project->update([
+
+                            'selected_user_id' => 0,
+
+                    ]);
+
+                }
+
+                return back()->with('success', 'Student deselected successfully.');
+
+            } else {
+
+                return back()->withErrors([
+                    'You can only select students for your own projects.'
+                ]);
+
+            }
         }
 
     }

@@ -21,8 +21,8 @@ class SuperAdminController extends Controller
 			$superadmin = true;
 			$active_project_viewing = config('superadmin-settings.active_project_viewing');
 			$active_project_selection = config('superadmin-settings.active_project_selection');
-			$active_project_first_matching = config('superadmin-settings.active_project_first_matching');
 			$active_project_all_matching = config('superadmin-settings.active_project_all_matching');
+			$active_project_first_matching = config('superadmin-settings.active_project_first_matching');
 
 	    	return view(
 	            	'superadmin',
@@ -30,8 +30,8 @@ class SuperAdminController extends Controller
 		                'superadmin',
 		                'active_project_viewing',
 		                'active_project_selection',
-		                'active_project_first_matching',
 		                'active_project_all_matching',
+		                'active_project_first_matching',
 		            )
 	        );
 
