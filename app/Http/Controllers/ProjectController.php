@@ -14,30 +14,41 @@ class ProjectController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        // default values for showing results
-        $paginate = 5;
-        $order = 'relevance';
+        $active_project_viewing = config('superadmin-settings.active_project_viewing');
 
-        $search = "";
+        if ($active_project_viewing == false) {
 
-        $projects = Project::where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(5);
+            return view('welcome')->withErrors([
+                'Project viewing is currently shutdown'
+            ]);
 
-        $userProjects = Project::where('user_id',$userID)->get();
-        $selectUserProjects = Project::where('user_id',$userID)->pluck('title','id')->all();
-        $likedProjects = $user->likedProjects()->get();
+        } else {
 
-        return view(
-                'projects',
-                compact(                    
+            // default values for showing results
+            $paginate = 5;
+            $order = 'relevance';
+
+            $search = "";
+
+            $projects = Project::where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(5);
+
+            $userProjects = Project::where('user_id',$userID)->get();
+            $selectUserProjects = Project::where('user_id',$userID)->pluck('title','id')->all();
+            $likedProjects = $user->likedProjects()->get();
+
+            return view(
                     'projects',
-                    'userProjects',
-                    'selectUserProjects',
-                    'likedProjects',
-                    'paginate',
-                    'order',
-                    'search'
-                )
-            );
+                    compact(                    
+                        'projects',
+                        'userProjects',
+                        'selectUserProjects',
+                        'likedProjects',
+                        'paginate',
+                        'order',
+                        'search'
+                    )
+                );
+        }
 
     }
 

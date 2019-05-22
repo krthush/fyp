@@ -9,6 +9,9 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
 
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
         <!-- Styles -->
         <style>
             html, body {
@@ -68,7 +71,11 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
+                        @if(Auth::user()->superadmin == 1)
+                        <a href="{{ route('superadmin') }}">Super Admin</a>
+                        @endif
                         <a href="{{ route('projects') }}">Projects</a>
+                        <a href="{{ route('dashboard') }}">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -80,6 +87,25 @@
             @endif
 
             <div class="content">
+
+                @if ($message = Session::get('success'))
+                    <div class="col-8 mx-auto alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button> 
+                            <strong>{{ $message }}</strong>
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="col-8 mx-auto alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button> 
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li><strong>{{ $error }}</strong></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="title m-b-md">
                     FYP Selection Portal
                 </div>
@@ -91,4 +117,8 @@
             </div>
         </div>
     </body>
+    <!-- Bootstrap Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </html>
