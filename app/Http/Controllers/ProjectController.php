@@ -405,6 +405,22 @@ class ProjectController extends Controller
 
             } else {
 
+                $active_project_first_matching = config('superadmin-settings.active_project_first_matching');
+
+                if ($active_project_first_matching == 1) {
+
+                    $type = 'App\Project';
+
+                    $likeable = Like::withTrashed()->whereLikeableType($type)->whereLikeableId($project->id)->whereUserId($student_id)->first();
+
+                    if ($likeable->order_column != 1) {
+
+                        return back()->withErrors([
+                            'Only selecting first ranked students is currently allowed.'
+                        ]);
+                    }
+                }
+
                 if ($project->user_id === $userID) {
 
                     if ($project->selected_user_id === 0) {
