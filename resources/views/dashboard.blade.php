@@ -56,21 +56,21 @@
                         <td>
                           @foreach($project->likes as $like)
                             @if($like->order_column == 1)
-                              {{ $like->user->name }} <br>
+                              {{ $like->user->name }} @if( $like->user->isSelected()) ★ @endif <br>
                             @endif
                           @endforeach
                         </td>
                         <td>
                           @foreach($project->likes as $like)
                             @if($like->order_column == 2)
-                              {{ $like->user->name }} <br>
+                              {{ $like->user->name }} @if( $like->user->isSelected()) ★ @endif <br>
                             @endif
                           @endforeach
                         </td>
                         <td>
                           @foreach($project->likes as $like)
                             @if($like->order_column == 3)
-                              {{ $like->user->name }} <br>
+                              {{ $like->user->name }} @if( $like->user->isSelected()) ★ @endif <br>
                             @endif
                           @endforeach
                         </td>
@@ -78,6 +78,9 @@
                       </tr>
                       @endforeach
                     </tbody>
+
+                    <div class="float-right">★ Selected Students</div>
+
                   </table>
 
                     @else
