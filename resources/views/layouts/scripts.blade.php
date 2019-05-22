@@ -106,18 +106,18 @@
 <!-- Script for flipping direction of search order -->
 <script>
 
-$.fn.reverseChildren = function() {
-  return this.each(function(){
-    var $this = $(this);
-    $this.children().each(function(){
-      $this.prepend(this);
+  $.fn.reverseChildren = function() {
+    return this.each(function(){
+      var $this = $(this);
+      $this.children().each(function(){
+        $this.prepend(this);
+      });
     });
-  });
-};
+  };
 
-$( "#target" ).click(function() {
-  $('#allprojects').reverseChildren();
-});
+  $( "#target" ).click(function() {
+    $('#allprojects').reverseChildren();
+  });
 
 </script>
 
@@ -130,12 +130,10 @@ $( "#target" ).click(function() {
   });
 </script>
 
-
 <!-- Super Admin Scripts -->
 @isset($superadmin)
 <script type="text/javascript">
   $(function() {
-
 
     $('#toggle-project-viewing').change(function() {
       // Start of Ajax
@@ -192,7 +190,6 @@ $( "#target" ).click(function() {
           }
       }); // End of Ajax
     });
-
 
   });  
 </script>
