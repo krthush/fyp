@@ -135,18 +135,65 @@ $( "#target" ).click(function() {
 @isset($superadmin)
 <script type="text/javascript">
   $(function() {
+
+
     $('#toggle-project-viewing').change(function() {
-      location.href = "/superadmin/toggle-project-viewing";
+      // Start of Ajax
+      $.ajax({
+          url: "{{ route('toggle-project-viewing') }}",
+          type: 'GET', //THIS NEEDS TO BE GET
+          success: function (data) {
+              console.log(data);
+          },
+          error: function() { 
+               console.log(data);
+          }
+      }); // End of Ajax
     });
+
     $('#toggle-project-selection').change(function() {
-      location.href = "/superadmin/toggle-project-selection";
+      // Start of Ajax
+      $.ajax({
+          url: "{{ route('toggle-project-selection') }}",
+          type: 'GET', //THIS NEEDS TO BE GET
+          success: function (data) {
+              console.log(data);
+          },
+          error: function() { 
+               console.log(data);
+          }
+      }); // End of Ajax
     });
+
     $('#toggle-project-first-matching').change(function() {
-      location.href = "/superadmin/toggle-project-first-matching";
+      // Start of Ajax
+      $.ajax({
+          url: "{{ route('toggle-project-first-matching') }}",
+          type: 'GET', //THIS NEEDS TO BE GET
+          success: function (data) {
+              console.log(data);
+          },
+          error: function() { 
+               console.log(data);
+          }
+      }); // End of Ajax
     });
+
     $('#toggle-project-all-matching').change(function() {
-      location.href = "/superadmin/toggle-project-all-matching";
+      // Start of Ajax
+      $.ajax({
+          url: "{{ route('toggle-project-all-matching') }}",
+          type: 'GET', //THIS NEEDS TO BE GET
+          success: function (data) {
+              console.log(data);
+          },
+          error: function() { 
+               console.log(data);
+          }
+      }); // End of Ajax
     });
+
+
   });  
 </script>
 @endisset

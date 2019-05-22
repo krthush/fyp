@@ -36,7 +36,7 @@ class SuperAdminController extends Controller
 	        );
 
 		} else {
-			return back()->withErrors([
+			return view('welcome')->withErrors([
                 'You must be a superadmin to do this.'
             ]);
 		}
@@ -72,10 +72,10 @@ class SuperAdminController extends Controller
 
 			Config::write('superadmin-settings.active_project_viewing', $value);
 
-			return back()->with('success', 'Setting edited successfully.');
+			return response()->json(array('success' => true));
 
 		} else {
-			return back()->withErrors([
+			return view('welcome')->withErrors([
                 'You must be a superadmin to do this.'
             ]);
 		}
@@ -95,10 +95,10 @@ class SuperAdminController extends Controller
 
 			Config::write('superadmin-settings.active_project_selection', $value);
 
-			return back()->with('success', 'Setting edited successfully.');
+			return response()->json(array('success' => true));
 
 		} else {
-			return back()->withErrors([
+			return view('welcome')->withErrors([
                 'You must be a superadmin to do this.'
             ]);
 		}
@@ -118,10 +118,10 @@ class SuperAdminController extends Controller
 
 			Config::write('superadmin-settings.active_project_first_matching', $value);
 
-			return back()->with('success', 'Setting edited successfully.');
+			return response()->json(array('success' => true));
 
 		} else {
-			return back()->withErrors([
+			return view('welcome')->withErrors([
                 'You must be a superadmin to do this.'
             ]);
 		}
@@ -144,10 +144,10 @@ class SuperAdminController extends Controller
 
 			Config::write('superadmin-settings.active_project_all_matching', $value);
 
-			return back()->with('success', 'Setting edited successfully.');
+			return response()->json(array('success' => true));
 
 		} else {
-			return back()->withErrors([
+			return view('welcome')->withErrors([
                 'You must be a superadmin to do this.'
             ]);
 		}
