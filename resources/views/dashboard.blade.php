@@ -6,15 +6,17 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
+                  <span style="vertical-align: middle; height: 100%;">
                     Dashboard
+                  </span>
 
-                    @if (Auth::user()->staff == 1)
-                    <!-- Button Trigger -->
-                    <button type="button" class="btn btn-outline-secondary ml-1 float-right" data-toggle="modal" data-target="#addProjectModal">Add Project</button>
+                  @if (Auth::user()->staff == 1)
+                  <!-- Button Trigger -->
+                  <button type="button" class="btn btn-outline-secondary ml-1 float-right" data-toggle="modal" data-target="#addProjectModal">Add Project</button>
 
-                    <!-- Button Trigger -->
-                    <button type="button" class="btn btn-outline-secondary float-right" data-toggle="modal" data-target="#deleteProjectModal">Delete Project</button>
-                    @endif
+                  <!-- Button Trigger -->
+                  <button type="button" class="btn btn-outline-secondary float-right" data-toggle="modal" data-target="#deleteProjectModal">Delete Project</button>
+                  @endif
 
                 </div>
 
