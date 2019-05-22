@@ -58,21 +58,21 @@
                         <td>
                           @foreach($project->likes as $like)
                             @if($like->order_column == 1)
-                              {{ $like->user->name }} @if( $like->user->isSelected()) ★ @endif <br>
+                              {{ $like->user->name }} @if( $like->user->isSelected() && ($like->user->id == $project->selected_user_id || $like->user->id == $project->selected_user2_id)) ★ @endif <br>
                             @endif
                           @endforeach
                         </td>
                         <td>
                           @foreach($project->likes as $like)
                             @if($like->order_column == 2)
-                              {{ $like->user->name }} @if( $like->user->isSelected()) ★ @endif <br>
+                              {{ $like->user->name }} @if( $like->user->isSelected() && ($like->user->id == $project->selected_user_id || $like->user->id == $project->selected_user2_id)) ★ @endif <br>
                             @endif
                           @endforeach
                         </td>
                         <td>
                           @foreach($project->likes as $like)
                             @if($like->order_column == 3)
-                              {{ $like->user->name }} @if( $like->user->isSelected()) ★ @endif <br>
+                              {{ $like->user->name }} @if($like->user->isSelected() && ($like->user->id == $project->selected_user_id || $like->user->id == $project->selected_user2_id)) ★ @endif <br>
                             @endif
                           @endforeach
                         </td>
