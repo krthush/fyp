@@ -348,33 +348,45 @@ class ProjectController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        if ($project->user_id === $userID) {
+        $student = User::find($student_id);
 
-            if ($project->selected_user_id === 0) {
+        if ($student->isSelected()) {
 
-                $project->update([
-
-                        'selected_user_id' => $student_id,
-
-                ]);
-
-            } else {
-
-                $project->update([
-
-                        'selected_user2_id' => $student_id,
-
-                ]);
-
-            }
-
-            return back()->with('success', 'Student selected successfully.');
+            return back()->withErrors([
+                'This student has already been selected for another project.'
+            ]);
 
         } else {
 
-            return back()->withErrors([
-                'You can only select students for your own projects.'
-            ]);
+            if ($project->user_id === $userID) {
+
+                if ($project->selected_user_id === 0) {
+
+                    $project->update([
+
+                            'selected_user_id' => $student_id,
+
+                    ]);
+
+                } else {
+
+                    $project->update([
+
+                            'selected_user2_id' => $student_id,
+
+                    ]);
+
+                }
+
+                return back()->with('success', 'Student selected successfully.');
+
+            } else {
+
+                return back()->withErrors([
+                    'You can only select students for your own projects.'
+                ]);
+
+            }
 
         }
 
