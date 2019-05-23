@@ -130,6 +130,13 @@
   });
 </script>
 
+<!-- Script to submit search form whenever input changes -->
+<script type="text/javascript">
+  $('#searchProjectForm select').change(function() {
+      $(this).closest('form').submit();
+  });
+</script>
+
 <!-- Super Admin Scripts -->
 @isset($superadmin)
 <script type="text/javascript">
