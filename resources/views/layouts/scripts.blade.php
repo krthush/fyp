@@ -137,6 +137,19 @@
   });
 </script>
 
+<!-- Script to change text area automatically when editing -->
+<script type="text/javascript">
+  function textAreaAdjust(o) {
+    o.style.height = "1px";
+    o.style.height = (25+o.scrollHeight)+"px";
+  }
+</script>
+<script type="text/javascript">
+  $('#editProjectModal').on('shown.bs.modal', function (e) {
+    $("#editDescriptionTextArea").height( $("#editDescriptionTextArea")[0].scrollHeight );
+  });
+</script>
+
 <!-- Super Admin Scripts -->
 @isset($superadmin)
 <script type="text/javascript">

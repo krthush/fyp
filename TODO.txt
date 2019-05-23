@@ -1,5 +1,7 @@
 HIGH TODOs:
 
+	Make MSc/UG students only see their respective projects
+
 LOW TODOs:
 
 	Need to think about what happens after projects are selected -> should all the "likes" for other students be deleted? I.E. removes that option from them. ? Presume this requires that phased roll out Ambrose was talking
@@ -29,6 +31,8 @@ From earlier TODOs:
 	There maybe an easier way to display the individual user's like order on the project page rather than a double forloop -> look into this
 
 DONE:
+
+	Fixed auto height for editing text areas (only specifically for project descriptions)
 
 	Make super uber admin portal for ambrose so he can roll out student selection, staff selection for specific student ranks (e.g. only let them select rank 1 students) and so on... IMPORTANT: from this he should also be able to export tables
 

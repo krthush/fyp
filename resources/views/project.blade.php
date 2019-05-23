@@ -120,7 +120,7 @@
                                 <button type="button" class="btn btn-outline-secondary mt-3" data-toggle="modal" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Delete Project</button>
 
                                 <!-- Button Trigger -->
-                                <button type="button" class="btn btn-outline-secondary mt-3" data-toggle="modal" data-target="#editProjectModal">Edit Project</button>
+                                <button onclick="" type="button" class="btn btn-outline-secondary mt-3" data-toggle="modal" data-target="#editProjectModal">Edit Project</button>
                             {!! Form::close()  !!}
 
                             <!-- Modal -->
@@ -146,7 +146,7 @@
                                         <div class="form-group row">
                                             <label for="descriptionTextArea" class="col-sm-2 col-form-label">Description</label>
                                             <div class="col-sm-10">
-                                                <textarea class="form-control" rows="3" name="description">{{ $project->description }}</textarea>
+                                                <textarea id="editDescriptionTextArea" class="form-control" rows="3" name="description" onkeyup="textAreaAdjust(this)">{{ $project->description }}</textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
