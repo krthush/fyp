@@ -40,7 +40,7 @@ class User extends Authenticatable
         return $this->morphedByMany('App\Project', 'likeable')->whereDeletedAt(null)->orderBy('order_column');
     }
 
-    public function isSelected()
+    public function getIsSelectedAttribute()
     {
         $selectedProject = Project::where('selected_user_id', $this->id)->first();
 

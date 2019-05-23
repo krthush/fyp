@@ -137,6 +137,15 @@
                                     <small class="ml-5">{{ \Carbon\Carbon::parse($project->updated_at)->format('d/m/Y') }}</small>
                                 </div>
                                 <small>by {{ $project->user()->first()->name }}
+                                        @if($project->getIsSelectedAttribute())
+                                            @if($project->selected_user_id == Auth::user()->id || $project->selected_user2_id == Auth::user()->id)
+                                                <span>(★ Your Selected Project)</span>
+                                            @elseif(Auth::user()->staff == 1)
+                                                <span>(★ Student Allocated)</span>
+                                            @else
+                                                <span>(★ Other Student Allocated)</span>
+                                            @endif
+                                        @endif()
                                         <span class="badge badge-primary badge-pill float-right mt-2">{{ $project->likes->count() }}</span>
                                 </small>
                             </a>
@@ -164,6 +173,15 @@
                                   <h6 class="mb-1">{{ $project->title }}</h6>
                                 </div>
                                 <small class="project-list-rank">Rank: {{ $loop->iteration }}</small>
+                                @if($project->getIsSelectedAttribute())
+                                    @if($project->selected_user_id == Auth::user()->id || $project->selected_user2_id == Auth::user()->id)
+                                        <span>(★ Your Selected Project)</span>
+                                    @elseif(Auth::user()->staff == 1)
+                                        <span>(★ Student Allocated)</span>
+                                    @else
+                                        <span>(★ Other Student Allocated)</span>
+                                    @endif
+                                @endif()
                             </a>
                         @endforeach                       
                     </div>

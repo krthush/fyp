@@ -29,6 +29,25 @@
 
                     <b>Supervisor: {{ $project->user()->first()->name }}</b>
 
+                    @if($project->getIsSelectedAttribute())
+                        @if($project->selected_user_id == Auth::user()->id || $project->selected_user2_id == Auth::user()->id)
+                            <span class="float-right">(★ Your Selected Project)</span>
+                        @elseif(Auth::user()->staff == 1)
+                            <span class="float-right">
+                                (★ Student Allocated
+                                @if($project->getSelectedUser)
+                                    ; {{ $project->getSelectedUser->name }}
+                                @endif
+                                @if($project->getSelectedUser2)
+                                    ; {{ $project->getSelectedUser2->name }}
+                                @endif
+                                )
+                            </span>                            
+                        @else
+                            <span class="float-right">(★ Other Student Allocated)</span>
+                        @endif
+                    @endif()
+
                     <br><br>
 
                     {!! nl2br(e($project->description)) !!}

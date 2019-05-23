@@ -14,20 +14,37 @@ class ProjectController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        // superadmin/admin bypass checks
-        if ($user->superadmin == 1 || $user->admin == 1) {
-            $projects = Project::all()->paginate(5);
-        }
-
         $active_project_viewing = config('superadmin-settings.active_project_viewing');
 
-        if ($active_project_viewing == 0) {
+        // superadmin/admin bypass checks
+        if ($user->superadmin == 1 || $user->admin == 1) {
+
+            $projects = Project::paginate(5);
+
+            $userProjects = Project::where('user_id',$userID)->get();
+            $selectUserProjects = Project::where('user_id',$userID)->pluck('title','id')->all();
+            $likedProjects = $user->likedProjects()->get();
+
+            return view(
+                    'projects',
+                    compact(                    
+                        'projects',
+                        'userProjects',
+                        'selectUserProjects',
+                        'likedProjects',
+                        'paginate',
+                        'order',
+                        'search'
+                    )
+                );
+
+        } elseif ($active_project_viewing == 0) { // Now check whether project viewing is allowed
 
             return view('welcome')->withErrors([
                 'Viewing all projects is currently shutdown'
             ]);
 
-        } else {
+        } else { // Normal user behaviour
 
             // default values for showing results
             $paginate = 5;
@@ -72,6 +89,12 @@ class ProjectController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
+        $paginate = request('paginate');
+        $order = request('order');
+        $search = $request->get('query');
+
+        $active_project_viewing = config('superadmin-settings.active_project_viewing');
+
         // superadmin/admin bypass checks
         if ($user->superadmin == 1 || $user->admin == 1) {
             //check pagination
@@ -82,22 +105,52 @@ class ProjectController extends Controller
                 $projects->appends(['order' => $order]);
                 $projects->appends(['paginate' => $paginate]);
             }
-        }
 
-        $active_project_viewing = config('superadmin-settings.active_project_viewing');
+            $userProjects = Project::where('user_id',$userID)->get();
+            $selectUserProjects=Project::where('user_id',$userID)->pluck('title','id')->all();
+            $likedProjects = $user->likedProjects()->get();
 
-        if ($active_project_viewing == 0) {
+            // If there are results return them, if none, return the error message.
+            if ($projects->count()) {
+
+                return view(
+                        'projects',
+                        compact(                        
+                            'projects',
+                            'userProjects',
+                            'selectUserProjects',
+                            'likedProjects',
+                            'paginate',
+                            'order',
+                            'search'
+                        )
+                    );
+
+            } else {
+
+                return view(
+                    'projects',
+                    compact(                    
+                        'projects',
+                        'userProjects',
+                        'selectUserProjects',
+                        'likedProjects',
+                        'paginate',
+                        'order',
+                        'search'
+                    )
+                )->withErrors([
+                    'No results found, please try with different keywords.'
+                ]);
+            }
+
+        } elseif ($active_project_viewing == 0) { // Now check whether project viewing is allowed
 
             return view('welcome')->withErrors([
                 'Viewing all projects is currently shutdown'
             ]);
 
-        } else {
-
-            $paginate = request('paginate');
-            $order = request('order');
-
-            $search = $request->get('query');
+        } else { // Normal User behaviour
 
             //check pagination
             if ($paginate == 'all') {
@@ -414,7 +467,7 @@ class ProjectController extends Controller
 
             $student = User::find($student_id);
 
-            if ($student->isSelected()) {
+            if ($student->getIsSelectedAttribute()) {
 
                 return back()->withErrors([
                     'This student has already been selected for another project.'
@@ -438,7 +491,7 @@ class ProjectController extends Controller
                     }
                 }
 
-                if ($project->user_id === $userID) {
+                if ($project->user_id === $userID || $user->admin == 1) {
 
                     if ($project->selected_user_id === 0) {
 
