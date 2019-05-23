@@ -14,6 +14,11 @@ class ProjectController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
+        // superadmin/admin bypass checks
+        if ($user->superadmin == 1 || $user->admin == 1) {
+            $projects = Project::all()->paginate(5);
+        }
+
         $active_project_viewing = config('superadmin-settings.active_project_viewing');
 
         if ($active_project_viewing == 0) {
@@ -30,7 +35,14 @@ class ProjectController extends Controller
 
             $search = "";
 
-            $projects = Project::where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(5);
+            //check roles
+            if ($user->UG == 1) {
+                $projects = Project::where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->where('UG', 1)->paginate(5);
+            } elseif ($user->MSc == 1) {
+                $projects = Project::where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->where('MSc', 1)->paginate(5);
+            } else {
+                $projects = Project::where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(5);
+            }
 
             $userProjects = Project::where('user_id',$userID)->get();
             $selectUserProjects = Project::where('user_id',$userID)->pluck('title','id')->all();
@@ -60,6 +72,18 @@ class ProjectController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
+        // superadmin/admin bypass checks
+        if ($user->superadmin == 1 || $user->admin == 1) {
+            //check pagination
+            if ($paginate == 'all') {
+                $projects = Project::search($search)->within($order)->get();
+            } else {
+                $projects = Project::search($search)->within($order)->paginate($paginate);
+                $projects->appends(['order' => $order]);
+                $projects->appends(['paginate' => $paginate]);
+            }
+        }
+
         $active_project_viewing = config('superadmin-settings.active_project_viewing');
 
         if ($active_project_viewing == 0) {
@@ -75,40 +99,33 @@ class ProjectController extends Controller
 
             $search = $request->get('query');
 
-            if (request('paginate') == 'all') {
+            //check pagination
+            if ($paginate == 'all') {
 
-                if (request('order') == 'name') {
-                    $projects = Project::search($search)->where('hidden', 0)->within('orderByName')->where('selected_user_id', 0)->where('selected_user2_id', 0)->get();
-                    // dd($projects);
-                } else if (request('order') == 'author') {
-                    $projects = Project::search($search)->where('hidden', 0)->within('orderByAuthor')->where('selected_user_id', 0)->where('selected_user2_id', 0)->get();
-                } else if (request('order') == 'date') {
-                    $projects = Project::search($search)->where('hidden', 0)->within('orderByDate')->where('selected_user_id', 0)->where('selected_user2_id', 0)->get();
-                } else if (request('order') == 'popularity') {
-                    $projects = Project::search($search)->where('hidden', 0)->within('orderByPopularity')->where('selected_user_id', 0)->where('selected_user2_id', 0)->get();
+                //check roles
+                if ($user->UG == 1) {
+                    $projects = Project::search($search)->within($order)->where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->where('UG', 1)->get();
+                } elseif ($user->MSc == 1) {
+                    $projects = Project::search($search)->within($order)->where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->where('MSc', 1)->get();
                 } else {
-                    $projects = Project::search($search)->where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->get();
+                    $projects = Project::search($search)->within($order)->where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->get();
                 }
 
             } else {
 
-                if (request('order') == 'name') {
-                    $projects = Project::search($search)->where('hidden', 0)->within('orderByName')->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(request('paginate'));
-                    $projects->appends(['order' => 'name']);
-                } else if (request('order') == 'author') {
-                    $projects = Project::search($search)->where('hidden', 0)->within('orderByAuthor')->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(request('paginate'));
-                    $projects->appends(['order' => 'author']);
-                } else if (request('order') == 'date') {
-                    $projects = Project::search($search)->where('hidden', 0)->within('orderByDate')->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(request('paginate'));
-                    $projects->appends(['order' => 'date']);
-                } else if (request('order') == 'popularity') {
-                    $projects = Project::search($search)->where('hidden', 0)->within('orderByPopularity')->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(request('paginate'));
-                    $projects->appends(['order' => 'popularity']);
+                //check roles
+                if ($user->UG == 1) {
+                    $projects = Project::search($search)->within($order)->where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->where('UG', 1)->paginate($paginate);
+                    $projects->appends(['order' => $order]);
+                } elseif ($user->MSc == 1) {
+                    $projects = Project::search($search)->within($order)->where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->where('MSc', 1)->paginate($paginate);
+                    $projects->appends(['order' => $order]);
                 } else {
-                    $projects = Project::search($search)->where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate(request('paginate'));
+                    $projects = Project::search($search)->within($order)->where('hidden', 0)->where('selected_user_id', 0)->where('selected_user2_id', 0)->paginate($paginate);
+                    $projects->appends(['order' => $order]);
                 }
-
-                $projects->appends(['paginate' => request('paginate')]);
+                
+                $projects->appends(['paginate' => $paginate]);
 
             }
 

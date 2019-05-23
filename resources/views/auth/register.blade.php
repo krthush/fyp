@@ -61,6 +61,27 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Role</label>
+
+                            <div class="col-md-6 d-flex align-items-center">
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="UG" checked>
+                                  <label class="form-check-label" for="inlineRadio1">UG</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="MSc">
+                                  <label class="form-check-label" for="inlineRadio2">MSc</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="role" id="inlineRadio3" value="staff">
+                                  <label class="form-check-label" for="inlineRadio3">Other</label>
+                                </div>
+                            </div>
+
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

@@ -53,6 +53,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'role' => ['required'],
         ]);
     }
 
@@ -64,10 +65,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        // Initial values
+        $staff = 0;
+        $UG = 0;
+        $MSc = 0;
+        
         if (DB::table('staff')->where('email', '=', $data['email'])->exists()) {
-            $staff = true;
-        } else {
-            $staff = false;
+            $staff = 1;
+        }
+
+        if ($data['role'] == 'UG') {
+            $UG = 1;
+        }
+
+        if ($data['role'] == 'MSc') {
+            $MSc = 1;
         }
 
         return User::create([
@@ -75,6 +88,8 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'staff' => $staff,
+            'UG' => $UG,
+            'MSc' => $MSc,
         ]);
     }
 }

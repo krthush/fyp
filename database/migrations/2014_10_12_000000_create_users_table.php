@@ -21,8 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->boolean('staff');
-            $table->tinyInteger('year')->default(0);
+            $table->boolean('staff')->default(0);
+            $table->boolean('UG')->default(0);
+            $table->boolean('MSc')->default(0);
             $table->boolean('admin')->default(0);
             $table->boolean('superadmin')->default(0);
         });

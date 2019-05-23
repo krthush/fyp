@@ -20,7 +20,8 @@ class User extends Authenticatable
         'email',
         'password',
         'staff',
-        'year',
+        'UG',
+        'MS',
         'admin',
         'superadmin'
     ];

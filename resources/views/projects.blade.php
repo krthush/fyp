@@ -82,33 +82,33 @@
                                     <select class="btn btn-outline-secondary" name="order">
 
                                         @if($order == "relevance")
-                                            <option value="relevance" selected>Order by Relevance</option>
+                                            <option value="projects" selected>Order by Relevance</option>
                                         @else
-                                            <option value="relevance">Order by Relevance</option>
+                                            <option value="projects">Order by Relevance</option>
                                         @endif
 
                                         @if($order == "name")
-                                            <option value="name" selected>Order by Name</option>
+                                            <option value="orderByName" selected>Order by Name</option>
                                         @else
-                                            <option value="name">Order by Name</option>
+                                            <option value="orderByName">Order by Name</option>
                                         @endif
 
                                         @if($order == "author")
-                                            <option value="author" selected>Order by Author</option>
+                                            <option value="orderByAuthor" selected>Order by Author</option>
                                         @else
-                                            <option value="author">Order by Author</option>
+                                            <option value="orderByAuthor">Order by Author</option>
                                         @endif
 
                                         @if($order == "date")
-                                            <option value="date" selected>Order by Date</option>
+                                            <option value="orderByDate" selected>Order by Date</option>
                                         @else
-                                            <option value="date">Order by Date</option>
+                                            <option value="orderByDate">Order by Date</option>
                                         @endif
 
                                         @if($order == "popularity")
-                                            <option value="popularity" selected>Order by Popularity</option>
+                                            <option value="orderByPopularity" selected>Order by Popularity</option>
                                         @else
-                                            <option value="popularity">Order by Popularity</option>
+                                            <option value="orderByPopularity">Order by Popularity</option>
                                         @endif
 
                                     </select>

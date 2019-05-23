@@ -68,23 +68,10 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        @if(Auth::user()->superadmin == 1)
-                        <a href="{{ route('superadmin') }}">Super Admin</a>
-                        @endif
-                        <a href="{{ route('projects') }}">Projects</a>
-                        <a href="{{ route('dashboard') }}">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+            
+                <!-- <div class="top-right links">
+                    <a href="https://bb.imperial.ac.uk/">Blackboard</a>
+                </div> -->
 
             <div class="content">
 
@@ -109,8 +96,23 @@
                 <div class="title m-b-md">
                     FYP Selection Portal
                 </div>
-
+                
                 <div class="links">
+                    @if (Route::has('login'))
+                        @auth
+                            @if(Auth::user()->superadmin == 1)
+                            <a href="{{ route('superadmin') }}">Super Admin</a>
+                            @endif
+                            <a href="{{ route('projects') }}">Projects</a>
+                            <a href="{{ route('dashboard') }}">Dashboard</a>
+                        @else
+                            <a href="{{ route('login') }}">Login</a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}">Register</a>
+                            @endif
+                        @endauth
+                    @endif
                     <a href="https://bb.imperial.ac.uk/">Blackboard</a>
                 </div>
 
