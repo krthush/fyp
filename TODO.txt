@@ -1,12 +1,8 @@
 HIGH TODOs:
 
-	Make MSc/UG students only see their respective projects
-
 LOW TODOs:
 
 	Need to think about what happens after projects are selected -> should all the "likes" for other students be deleted? I.E. removes that option from them. ? Presume this requires that phased roll out Ambrose was talking
-
-	AJAX the select , rank up, rank down, deselect project
 
 	Time to submission/deadline somewhere
 
@@ -14,23 +10,13 @@ LOW TODOs:
 
 	Sliders for % experimental, computational, etc. I.E. overall breakdown of projects
 
-	Make controller/routes logic more fail proof -> clean it up using middleware. Also work on generation of dashboard table-> use more efficient collection generation methods.
+	Make controller/routes logic more fail proof -> clean it up using middleware. Also work on generation of dashboard table-> use more efficient collection generation methods. There maybe an easier way to display the individual user's like order on the project page rather than a double forloop -> look into this
 
 From earlier TODOs:
- 
-	Search, filtering (at least by experimental, computational, etc.), tags
-
-	Layout stuff
-
-	Additional columns for projects/user objects
-
-	Allow staff to select students
-
-	Fix bug with author ordering
-
-	There maybe an easier way to display the individual user's like order on the project page rather than a double forloop -> look into this
 
 DONE:
+
+	Make MSc/UG students only see their respective projects
 
 	Fixed auto height for editing text areas (only specifically for project descriptions)
 
@@ -44,6 +30,10 @@ DONE:
 
 	Show total number of searched projects/total number of projects
 
+	Fix bug with author ordering
+
+	Allow staff to select students
+
 	Create overview table for staff to see all students liking projects and their order (instead of having to go individual projects)
 	
 	For selected projects, make them into modals similar to the searched projects rather than leading to a different page, less UX friendly
@@ -55,11 +45,11 @@ DONE:
 	Get the search working using better routes/input (there is a bug now with select project due to this)
 
 Future Stuff:
-
-	Tagging/keyword system to improve search
-
-	Filters -> specific searching
+ 
+	Search, filtering (at least by experimental, computational, etc.), tags. Tagging/keyword system to improve search. Filters -> specific searching
 	
-	Images
+	Allow for Images
 
 	Suggested projects for students based on similarities
+
+	AJAX the select, rank up, rank down, deselect project, search

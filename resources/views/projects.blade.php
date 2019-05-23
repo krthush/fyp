@@ -81,31 +81,31 @@
                                     </select>
                                     <select class="btn btn-outline-secondary" name="order">
 
-                                        @if($order == "relevance")
+                                        @if($order == "projects")
                                             <option value="projects" selected>Order by Relevance</option>
                                         @else
                                             <option value="projects">Order by Relevance</option>
                                         @endif
 
-                                        @if($order == "name")
+                                        @if($order == "orderByName")
                                             <option value="orderByName" selected>Order by Name</option>
                                         @else
                                             <option value="orderByName">Order by Name</option>
                                         @endif
 
-                                        @if($order == "author")
+                                        @if($order == "orderByAuthor")
                                             <option value="orderByAuthor" selected>Order by Author</option>
                                         @else
                                             <option value="orderByAuthor">Order by Author</option>
                                         @endif
 
-                                        @if($order == "date")
+                                        @if($order == "orderByDate")
                                             <option value="orderByDate" selected>Order by Date</option>
                                         @else
                                             <option value="orderByDate">Order by Date</option>
                                         @endif
 
-                                        @if($order == "popularity")
+                                        @if($order == "orderByPopularity")
                                             <option value="orderByPopularity" selected>Order by Popularity</option>
                                         @else
                                             <option value="orderByPopularity">Order by Popularity</option>
