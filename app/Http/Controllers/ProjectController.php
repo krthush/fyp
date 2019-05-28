@@ -16,6 +16,12 @@ class ProjectController extends Controller
 
         $active_project_viewing = config('superadmin-settings.active_project_viewing');
 
+        // default values for showing results
+        $paginate = 5;
+        $order = 'relevance';
+
+        $search = "";
+
         // superadmin/admin bypass checks
         if ($user->superadmin == 1 || $user->admin == 1) {
 
@@ -45,12 +51,6 @@ class ProjectController extends Controller
             ]);
 
         } else { // Normal user behaviour
-
-            // default values for showing results
-            $paginate = 5;
-            $order = 'relevance';
-
-            $search = "";
 
             //check roles
             if ($user->UG == 1) {
