@@ -1,4 +1,4 @@
-# fyp
+# Final Year Project
 Final Year Project - Project Allocation Website
 
 Website built using Laravel. Please follow docs for server requirements: https://laravel.com/docs/6.x#server-requirements
